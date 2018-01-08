@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formularios</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <style>
+        div {
+            margin: auto;
+            width: 650px;
+        }
+
+        input[type="submit"] {
+            text-align: center;
+            margin-left: 35%;
+            padding: 10px;
+            padding-left: 50px;
+            padding-right: 50px;
+            color: white;
+            background-color: deepskyblue;
+            outline: none;
+            border-width: 0;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+            transition-duration: 0.4s;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="submit"]:hover {
+            color: deepskyblue;
+            background-color: white;
+            border: 2px solid deepskyblue;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 5px;
+            height: 15px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            color: white;
+            background-color: deepskyblue;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        label {
+            padding: 10px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        fieldset {
+            background-color: aliceblue;
+        }
+
+        #externo {}
+
+        div.horizontal {
+            flex-direction: row;
+            float: left;
+            width: 325px;
+            height: 250px;
+        }
+
+        div.vertical {
+            flex-direction: column;
+            display: flex;
+        }
+
+        #cont {
+            padding-left: 20px;
+        }
+
+        #user {
+            padding-left: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <fieldset>
+            <div id="externo">
+<!--               Le dejamos al usuario unas aclaraciones de cómo debe introducir los datos-->
+                <div class="horizontal">
+                    <h3 id="user">Usuario</h3>
+                    <ul>
+                        <li>Debe tener 6 caracteres, ni más ni menos.</li>
+                        <li>No puede contener símbolos, sólo letras, números y espacios</li>
+                    </ul>
+                </div>
+                <div class="horizontal">
+                    <h3 id="cont">Contraseña</h3>
+                    <ul>
+                        <li>Debe tener entre 6 y 15 caracteres</li>
+                        <li>Debe contener al menos 1 número</li>
+                        <li>Debe contener al menos 1 letra mayúscula y 1 letra minúscula</li>
+                        <li>Debe contener 1 espacio en blanco</li>
+                    </ul>
+                </div>
+                <div class="vertical">
+                   <p>Si alguna no se cumple se mostrará un mensaje de error</p>
+                    <!--Creamos un formulario con sus correspondientes campos, todos los campos son obligatorios para evitar campos vacíos-->
+                    <form action="enviar.php" method="post">
+                        <label for="usuario1">Usuario 1&nbsp;</label>
+                        <input type="text" id="usuario1" name="usuario1" required>
+                        <label for="password1">Contraseña</label>
+                        <input type="password" id="password1" name="password1" required>
+                        <br>
+                        <br>
+                        <label for="usuario2">Usuario 2</label>
+                        <input type="text" id="usuario2" name="usuario2" required>
+                        <label for="password2">Contraseña</label>
+                        <input type="password" id="password2" name="password2" required>
+                        <br>
+                        <br>
+                        <label for="usuario3">Usuario 3</label>
+                        <input type="text" id="usuario3" name="usuario3" required>
+                        <label for="password3">Contraseña</label>
+                        <input type="password" id="password3" name="password3" required>
+                        <br>
+                        <br>
+                        <label for="usuario4">Usuario 4</label>
+                        <input type="text" id="usuario4" name="usuario4" required>
+                        <label for="password4">Contraseña</label>
+                        <input type="password" id="password4" name="password4" required>
+                        <br>
+                        <br>
+                        <label for="usuario5">Usuario 5</label>
+                        <input type="text" id="usuario5" name="usuario5" required>
+                        <label for="password5">Contraseña</label>
+                        <input type="password" id="password5" name="password5" required>
+                        <br>
+                        <br>
+                        <input type="submit" name="enviar">
+                    </form>
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+</body>
+
+</html>

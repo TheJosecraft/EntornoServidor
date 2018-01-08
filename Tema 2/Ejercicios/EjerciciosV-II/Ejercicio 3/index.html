@@ -1,0 +1,63 @@
+<!--Escribir una página utilizando HTML – PHP en la que habrá 3 formularios
+diferentes. Uno para rellenar datos de hombres, otro para rellenar datos de
+mujeres y otro para rellenar datos de bebés.
+En cada uno de los formularios se pedirá nombre, peso y altura.
+La Web calculará el Índice de Masa Corporal de la persona teniendo en cuenta
+que:
+• Hombres: IMC = Peso (kg) / altura2
+ (metros)
+• Mujeres: IMC = Peso-5(kg) / altura2
+ (metros)
+• Bebés: IMC = Peso (kg) / altura (metros)
+Al mostrar los datos deberá decir si la persona es hombre, mujer o bebé. 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 3</title>
+</head>
+<body>
+	<h1>Hombres</h1>
+	<form action="enviar.php" method="post">
+		<label for="for"nombre"">Nombre</label>
+		<input type="text" name="nombre" id="nombre">
+		<br>
+		<label for="for"peso"">Peso</label>
+		<input type="text" name="peso" id="peso">
+		<br>
+		<label for="for"altura"">Altura</label>
+		<input type="text" name="altura" id="altura">
+		<br>
+		<input type="submit" name="hombre">
+	</form>
+	
+	<h1>Mujeres</h1>
+	<form action="enviar.php" method="post">
+		<label for="for"nombre"">Nombre</label>
+		<input type="text" name="nombre" id="nombre">
+		<br>
+		<label for="for"peso"">Peso</label>
+		<input type="text" name="peso" id="peso">
+		<br>
+		<label for="for"altura"">Altura</label>
+		<input type="text" name="altura" id="altura">
+		<br>
+		<input type="submit" name="mujer">
+	</form>
+	
+	<h1>Bebés</h1>
+	<form action="enviar.php" method="post">
+		<label for="for"nombre"">Nombre</label>
+		<input type="text" name="nombre" id="nombre">
+		<br>
+		<label for="for"peso"">Peso</label>
+		<input type="text" name="peso" id="peso">
+		<br>
+		<label for="for"altura"">Altura</label>
+		<input type="text" name="altura" id="altura">
+		<br>
+		<input type="submit" name="bebe">
+	</form>
+</body>
+</html>

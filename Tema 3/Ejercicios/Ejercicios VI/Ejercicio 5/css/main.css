@@ -1,0 +1,9 @@
+.calendar td {
+	border: 2px solid transparent;
+	border-radius: 50%;
+	display: inline-block;
+	height: 4em;
+	line-height: 4em;
+	text-align: center;
+	width: 4em;
+}

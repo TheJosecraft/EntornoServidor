@@ -1,0 +1,23 @@
+<!--Crear un una única página que pida al usuario un número y una imagen. La
+página deberá comprobar que el archivo es una imagen y que no supera los 2
+megas de tamaño. Si se cumple esto, se deberá guardar la imagen en el servidor y
+mostrar debajo del formulario una tabla con la imagen repetida tantas veces como
+el usuario haya elegido.
+Independientemente del número de veces que el usuario quiera repetir la imagen,
+la tabla sólo podrá tener 3 celdas por fila. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 4</title>
+</head>
+<body>
+	<form action="enviar.php" method="post" enctype="multipart/form-data">
+		<label for="numero">Número</label>
+		<input type="number" name="numero" id="numero"><br>
+		<label for="imagen">Imagen</label>
+		<input type="file" name="imagen" id="imagen"><br>
+		<input type="submit" name="enviar">
+	</form>
+</body>
+</html>

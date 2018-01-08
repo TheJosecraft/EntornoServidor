@@ -1,0 +1,37 @@
+<!--2. Escribir una página en HTML – PHP que permita a un usuario registrarse en una
+empresa de empleo. En la página HTML habrá un formulario donde el usuario
+podrá introducir sus datos personales y además se le permitirá subir su
+Curriculum Vitae.
+La página deberá asegurarse de que el Curriculum se sube en formato PDF y que
+no supera los 2 Mb de tamaño. Si se cumplen los dos requisitos, el Curriculum se
+guardará y como nombre se pondrá el DNI de la persona. En caso de que no se
+cumplan los requisitos, el sitio deberá dar un aviso y volver a enviar a la página
+principal. 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 2</title>
+</head>
+<body>
+	<form action="enviar.php" method="post" enctype="multipart/form-data">
+		<label for="nombre">Nombre</label>
+		<input type="text" name="nombre" id="nombre">
+		<br>
+		<label for="apellidos">Apellidos</label>
+		<input type="text" name="apellidos" id="apellidos">
+		<br>
+		<label for="dni">DNI</label>
+		<input type="text" name="dni" id="dni">
+		<br>
+		<label for="nombre">Email</label>
+		<input type="email" name="email" id="email">
+		<br>
+		<label for="cv">Currículum Vitae</label>
+		<input type="file" name="cv">
+		<br>
+		<input type="submit" name="enviar" id="enviar">
+	</form>
+</body>
+</html>

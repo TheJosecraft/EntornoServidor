@@ -1,0 +1,34 @@
+<!--Programar una página en HTML – PHP que a través de formularios pida al usuario
+día, mes y año.
+La página le mostrará al usuario el calendario del mes y el año que se le haya pasado,
+resaltando el día que el usuario eligió.
+Además la página (utilizando una casilla de verificación) preguntará si se quiere
+visualizar el mes anterior y (con otra casilla de verificación) el mes siguiente.
+Mostrando, por tanto, lo que se le indique.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+    <form action="enviar.php" method="post">
+        <label for="">Día</label>
+        <input type="text" name="dia">
+        <br>
+        <label for="">Mes</label>
+        <input type="text" name="mes">
+        <br>
+        <label for="">Año</label>
+        <input type="text" name="anio">
+        <br>
+        <input type="checkbox" name="mesAnt">
+        <label for="">Visualizar mes anterior</label>
+        <br>
+        <input type="checkbox" name="mesPos">
+        <label for="">Visualizar mes posterior</label>
+        <br>
+        <input type="submit" name="enviar">
+    </form>
+</body>
+</html>

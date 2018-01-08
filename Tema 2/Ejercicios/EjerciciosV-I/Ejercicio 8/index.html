@@ -1,0 +1,30 @@
+<!--Programar una página en HTML – PHP que pida al usuario su nombre completo
+y sus notas de matemáticas, lengua, historia y dibujo. El usuario introducirá las
+notas de forma numérica y la página web deberá mostrar su boletín de notas: -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 8</title>
+</head>
+<body>
+    <form action="enviar.php" method="get">
+        <label for="">Nombre</label>
+        <input type="text" name="nombre">
+        <br>
+        <label for="">Matemáticas</label>
+        <input type="number" name="matematicas">
+        <br>
+        <label for="">Lengua</label>
+        <input type="number" name="lengua">
+        <br>
+        <label for="">Historia</label>
+        <input type="number" name="historia">
+        <br>
+        <label for="">Dibujo</label>
+        <input type="number" name="dibujo">
+        <br>
+        <input type="submit">
+    </form>
+</body>
+</html>

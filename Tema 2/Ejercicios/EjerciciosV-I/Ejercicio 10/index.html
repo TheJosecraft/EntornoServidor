@@ -1,0 +1,42 @@
+<!--10. Programar una página en HTML – PHP que utilizando una lista desplegable deje
+al usuario elegir qué tabla de multiplicar quiere visualizar. Además le dejará
+elegir (utilizando un conjunto de tipo radio) en qué color quiere visualizarla.
+Después, la página Web le mostrará dicha tabla de multiplicar utilizando el color
+elegido por el usuario. 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 10</title>
+</head>
+<body>
+    <form action="enviar.php" method="get">
+        <label for="tablas">Elige la tabla</label>
+        <select name="tabla" id="tablas">
+            <option value="1">Tabla del 1</option>
+            <option value="2">Tabla del 2</option>
+            <option value="3">Tabla del 3</option>
+            <option value="4">Tabla del 4</option>
+            <option value="5">Tabla del 5</option>
+            <option value="6">Tabla del 6</option>
+            <option value="7">Tabla del 7</option>
+            <option value="8">Tabla del 8</option>
+            <option value="9">Tabla del 9</option>
+            <option value="10">Tabla del 10</option>
+        </select>
+        <br>
+        <input type="radio" name="color" value="cyan">
+        <label for="">Color 1</label>
+        <br>
+        <input type="radio" name="color" value="palegreen">
+        <label for="">Color 2</label>
+        <br>
+        <input type="radio" name="color" value="red">
+        <label for="">Color 3</label>
+        <br>
+        <br>
+        <input type="submit">
+    </form>
+</body>
+</html>

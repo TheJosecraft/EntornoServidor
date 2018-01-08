@@ -1,0 +1,20 @@
+<!--Crear un sitio web que permita a los usuarios subir su foto de perfil. Para ello
+habrá un formulario donde el usuario introducirá su Nick y su foto. El sitio
+guardará la foto en una carpeta que lleve como nombre el Nick del usuario y le
+pondrá como nombre a la foto también el Nick del usuario. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 6</title>
+</head>
+<body>
+	<form action="enviar.php" , method="post" enctype="multipart/form-data">
+		<label for="nick">Nick</label>
+		<input type="text" name="nick" id="nick"><br>
+		<label for="foto">Foto</label>
+		<input type="file" name="foto" id="foto"><br>
+		<input type="submit" name="enviar">
+	</form>
+</body>
+</html>
