@@ -33,20 +33,46 @@
 					<th><% Response.Write (Weekdayname(7, 1, 2))  %></th>
 				</tr>
 				<%
-                Cadfecha = "01/01/2018"
+
+				Cadfecha = "01/" & i & "/2018"
+
+				if(i = 12) then
+					diasMes = "01/01/2019"
+				else
+					diasMes = "01/" & i +1 & "/2018"
+				end if
+				
+                
                 fecha = Cdate(Cadfecha)
-                ultimoDia = dateadd("d", -1, fecha)
+                inicioSemana = Weekday(fecha, VBMONDAY)
+                ultimoDia = dateadd("d", -1, diasMes)
                 numDias = day(ultimoDia)
+                contCeldas = 1
+
+                while (inicioSemana > 1)
+					Response.write("<td>&nbsp;</td>")
+                	contCeldas = contCeldas + 1
+                	inicioSemana = inicioSemana - 1
+                	'Response.write("Contador: " & contCeldas & "<br>")
+                wend
+
                 For j = 1 To numDias
-                    %>
-                    <td><% Response.Write (j) %></td>
-                    <%
-                    If j MOD 7 = 0 Then
+                   
+                   'Response.write("Inicio semana: " & inicioSemana)
+                   Response.Write("<td>" & j & "</td>")
+                    
+                    If contCeldas MOD 7 = 0 AND contCeldas <> 0 Then
                         %>
                             </tr><tr>
                         <%
+                        contCeldas = 0
                     End if
+                    'Response.write("Contador: " & contCeldas & "<br>")
+
+                    contCeldas = contCeldas + 1
                 Next
+
+                
 				%>
 			</table>
             <%
