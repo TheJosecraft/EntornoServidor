@@ -33,7 +33,6 @@ Número Valor absoluto Raíz cuadrada Exponente
         </thead>
         <tbody>
             <%
-            
             for i = 0 to 10
                 response.write("<tr>")
                 response.write("<td>" & numeros(i) & "</td>")
