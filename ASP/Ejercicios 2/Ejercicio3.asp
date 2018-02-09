@@ -18,14 +18,14 @@ Variable Es array Es entero Es cadena Es boolena Está vacía-->
     vacia = ""
     cad = "Hola"
     
-    valores = array(numeros, numero, entero, bool, vacia, cad)
+    ' valores = array(numeros, numero, entero, bool, vacia, cad)
     
-    'valores(0) = numeros
-    'valores(1) = numero
-    'valores(2) = entero
-    'valores(3) = bool
-    'valores(4) = vacia
-    'valores(5) = cad
+    ' valores(0) = numeros
+    ' valores(1) = numero
+    ' valores(2) = entero
+    ' valores(3) = bool
+    ' valores(4) = vacia
+    ' valores(5) = cad
     
     %>
     <table border="1">
@@ -42,11 +42,60 @@ Variable Es array Es entero Es cadena Es boolena Está vacía-->
         <tbody>
             <%
             
-            for i = 0 to 6
+            
                 response.write("<tr>")
-                response.write("<td>" & valores(i) & "</td>")
+                response.write("<td>" & typename(numeros) & "</td>")
+                response.write("<td>" & isarray(numeros) & "</td>")
+                response.write("<td>" & isnumeric(numeros) & "</td>")
+                response.write("<td>" & typename(numeros) & "</td>")
+                response.write("<td>" & typename(numeros) & "</td>")
+                response.write("<td>" & isnull(numeros) & "</td>")
                 response.write("</tr>")
-            next
+
+                response.write("<tr>")
+                response.write("<td>" & typename(numero) & "</td>")
+                response.write("<td>" & isarray(numero) & "</td>")
+                response.write("<td>" & isnumeric(numero) & "</td>")
+                response.write("<td>" & typename(numero) & "</td>")
+                response.write("<td>" & typename(numero) & "</td>")
+                response.write("<td>" & isnull(numero) & "</td>")
+                response.write("</tr>")
+
+                response.write("<tr>")
+                response.write("<td>" & typename(entero) & "</td>")
+                response.write("<td>" & isarray(entero) & "</td>")
+                response.write("<td>" & isnumeric(entero) & "</td>")
+                response.write("<td>" & typename(entero) & "</td>")
+                response.write("<td>" & typename(entero) & "</td>")
+                response.write("<td>" & isnull(entero) & "</td>")
+                response.write("</tr>")
+
+                response.write("<tr>")
+                response.write("<td>" & typename(bool) & "</td>")
+                response.write("<td>" & isarray(bool) & "</td>")
+                response.write("<td>" & isnumeric(bool) & "</td>")
+                response.write("<td>" & typename(bool) & "</td>")
+                response.write("<td>" & typename(bool) & "</td>")
+                response.write("<td>" & isnull(bool) & "</td>")
+                response.write("</tr>")
+
+                response.write("<tr>")
+                response.write("<td>" & typename(vacia) & "</td>")
+                response.write("<td>" & isarray(vacia) & "</td>")
+                response.write("<td>" & isnumeric(vacia) & "</td>")
+                response.write("<td>" & typename(vacia) & "</td>")
+                response.write("<td>" & typename(vacia) & "</td>")
+                response.write("<td>" & isnull(vacia) & "</td>")
+                response.write("</tr>")
+                
+                response.write("<tr>")
+                response.write("<td>" & typename(cad) & "</td>")
+                response.write("<td>" & isarray(cad) & "</td>")
+                response.write("<td>" & isnumeric(cad) & "</td>")
+                response.write("<td>" & typename(cad) & "</td>")
+                response.write("<td>" & typename(cad) & "</td>")
+                response.write("<td>" & isnull(cad) & "</td>")
+                response.write("</tr>")
             
             %>
         </tbody>
