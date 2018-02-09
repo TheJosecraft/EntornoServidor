@@ -1,1 +1,1 @@
-Ejercicio6.asp
+Ejercicio6.aspp
