@@ -9,7 +9,7 @@
 	<%
 		set conexion = server.createObject("ADODB.Connection")
 
-		conexion.open("bd1")
+		conexion.open("bd")
 
 		consulta = "select * from alumnos"
 
