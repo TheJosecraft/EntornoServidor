@@ -89,7 +89,7 @@ public SUB insertarEvento()
 
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
-	ObjConexion.consultar("INSERT INTO EVENTOS (actividad, cliente, fecha_contrato, fecha_evento) VALUES (" & m_actividad & ", " & m_cliente & ", " & m_fecha_contrato & ", '27/03/2018')")
+	ObjConexion.consultar("INSERT INTO EVENTOS (actividad, cliente, fecha_contrato, fecha_evento) VALUES (" & m_actividad & ", " & m_cliente & ", '" & m_fecha_contrato & "', '" & m_fecha_evento & "')")
 
 	ObjConexion.cerrarConexion()
 
