@@ -2,6 +2,7 @@
 <%
 Class cliente
 
+private m_codigo
 private m_nombre
 private m_telefono
 private m_direccion
@@ -10,6 +11,14 @@ private m_contra
 public SUB Cliente()
 
 END SUB
+
+public function getCodigo()
+	getCodigo = m_codigo
+end function
+
+public SUB setCodigo(codigo)
+	m_codigo = codigo
+end SUB
 
 public function getNombre()
 	getNombre = m_nombre

@@ -1,51 +1,51 @@
 <!-- #include file ="conexion.asp" -->
 <%
-Class Actividad
+Class Evento
 
 	private m_codigo
-	private m_nombre
-	private m_desc
-	private m_duracion
-	private m_precio
+	private m_actividad
+	private m_cliente
+	private m_fecha_contrato
+	private m_fecha_evento
 
 	public function getCodigo()
-	getCodigo = m_codigo
+		getCodigo = m_codigo
 	end function
 
 	public SUB setCodigo(codigo)
 		m_codigo = codigo
 	end SUB
 
-	public function getNombre()
-		getNombre = m_nombre
+	public function getActividad()
+		getActividad = m_actividad
 	end function
 
-	public SUB setNombre(nombre)
-		m_nombre = nombre
+	public SUB setActividad(actividad)
+		m_actividad = actividad
 	end SUB
 
-	public function getDesc()
-		getDesc = m_desc
+	public function getCliente()
+		getCliente = m_cliente
 	end function
 
-	public SUB setDesc(descripcion)
-		m_desc = descripcion
+	public SUB setCliente(cliente)
+		m_cliente = cliente
 	end SUB
 
-	public function getDuracion()
-		getDuracion = m_duracion
+	public function getFechaContrato()
+		getFechaContrato = m_fecha_contrato
 	end function
 
-	public SUB setDuracion(duracion)
-		m_duracion = duracion
+	public SUB setFechaContrato(fecha_contrato)
+		m_fecha_contrato = fecha_contrato
 	end SUB
 
-	public function getPrecio()
-		getPrecio = m_precio
+	public function getFechaEvento()
+		getFechaEvento = m_fecha_evento
 	end function
 
-	public SUB setPrecio(precio)
-		m_precio = precio
+	public SUB setFechaEvento(fecha_evento)
+		m_fecha_evento = fecha_evento
 	end SUB
 
 	public SUB getById(id)
@@ -70,7 +70,7 @@ end SUB
 public SUB getAll()
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
-	set datos = ObjConexion.consultar("SELECT * FROM ACTIVIDAD")
+	set datos = ObjConexion.consultar("SELECT * FROM EVENTOS")
 
 	do while not datos.eof
 		response.write(datos("codigo") & "<br>")
@@ -85,11 +85,11 @@ public SUB getAll()
 	ObjConexion.cerrarConexion()
 end SUB
 
-public SUB insertarActividad()
+public SUB insertarEvento()
 
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
-	ObjConexion.consultar("INSERT INTO ACTIVIDAD (nombre, descripcion, duracion, precio) VALUES ('" & m_nombre & "', '" & m_desc & "'," & m_duracion & ", " & m_precio & ")")
+	ObjConexion.consultar("INSERT INTO EVENTOS (actividad, cliente, fecha_contrato, fecha_evento) VALUES (" & m_actividad & ", " & m_cliente & ", " & m_fecha_contrato & ", '27/03/2018')")
 
 	ObjConexion.cerrarConexion()
 
@@ -98,9 +98,9 @@ end SUB
 public SUB modificar(id)
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
-	ObjConexion.consultar("UPDATE ACTIVIDAD SET nombre = '" & m_nombre & "', duracion = '" & m_desc & "', direccion = " & m_duracion & ", contra = " & m_precio & " where codigo = " & id)
+	ObjConexion.consultar("UPDATE EVENTOS SET actividad = " & m_actividad & ", cliente = " & m_cliente & ", fecha_contrato = '" & m_fecha_contrato & "', fecha_evento = '" & m_fecha_evento & "' where codigo = " & id)
 	ObjConexion.cerrarConexion()
 end SUB
 
-End class
+end Class
 %>

@@ -8,6 +8,7 @@
 	<title>Insertar Actividad</title>
 </head>
 <body>
+	<% menu("actividades") %>
 	<form action="#" method="post">
 		<label for="nombre">Nombre</label>
 		<input type="text" name="nombre" id="nombre">
