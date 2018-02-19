@@ -1,17 +1,19 @@
 <%
 Class Conexion
 
+	private con
+
 	public SUB Conexion()
-		set conexion = server.createObject("ADODB.Connection")
-		conexion.open("bd")
+		set con = server.createObject("ADODB.Connection")
+		con.open("bd")
 	end SUB
 
 	public SUB cerrarConexion()
-		conexion.close()
+		con.close()
 	end SUB
 
 	public function consultar(consulta)
-		set consultar = conexion.Execute(consulta)
+		set consultar = con.Execute(consulta)
 	end function
 
 end Class

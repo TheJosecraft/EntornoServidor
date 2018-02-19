@@ -45,7 +45,9 @@ end SUB
 
 public SUB getById(id)
 	set ObjConexion = new Conexion
-	datos = ObjConexion.consultar("SELECT * FROM CLIENTES WHERE id = " & id)
+	ObjConexion.Conexion()
+	dim datos
+	set datos = ObjConexion.consultar("SELECT * FROM CLIENTE WHERE codigo = " & id)
 
 	do while not datos.eof
 		response.write(datos("codigo") & "<br>")
@@ -53,6 +55,7 @@ public SUB getById(id)
 		response.write(datos("telefono") & "<br>")
 		response.write(datos("direccion") & "<br>")
 		response.write(datos("contra") & "<br>")
+		datos.moveNext
 	loop
 
 	ObjConexion.cerrarConexion()
