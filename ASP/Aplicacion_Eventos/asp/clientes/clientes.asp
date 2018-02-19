@@ -10,7 +10,7 @@
 	<h1>Menu</h1>
 	<% menu("clientes") %>
 	<br>
-	<% 
+	<%
 	set ObjUsuario = new Cliente
 	ObjUsuario.setNombre("Jose")
 	ObjUsuario.setDireccion("Avenida de la Constitución")
