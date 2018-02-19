@@ -64,7 +64,7 @@ end SUB
 
 public SUB getAll()
 	set ObjConexion = new Conexion
-	ObjConexion.Conexion()
+	ObjConexion.Conectar()
 	set datos = ObjConexion.consultar("SELECT * FROM CLIENTE")
 
 	do while not datos.eof
@@ -80,9 +80,19 @@ public SUB getAll()
 	ObjConexion.cerrarConexion()
 end SUB
 
+public SUB insertarCliente()
+
+	set ObjConexion = new Conexion
+	ObjConexion.Conectar()
+	ObjConexion.consultar("INSERT INTO CLIENTE (nombre, telefono, direccion, contra) VALUES ('" & m_nombre & "', '" & m_telefono & "', '" & m_direccion & "', '" & m_contra & "')")
+
+	ObjConexion.cerrarConexion()
+
+end SUB
+
 public SUB modificar(id)
 	set ObjConexion = new Conexion
-	ObjConexion.Conexion()
+	ObjConexion.Conectar()
 	ObjConexion.consultar("UPDATE CLIENTE SET nombre = '" & m_nombre & "', telefono = '" & m_telefono & "', direccion = '" & m_direccion & "', contra = '" & m_contra & "' where codigo = " & id)
 	ObjConexion.cerrarConexion()
 end SUB

@@ -1,3 +1,4 @@
+<% @ CODEPAGE = 65001 %>
 <!-- #include file ="../funciones.asp" -->
 <!-- #include file ="../../clases/cliente.asp" -->
 <!DOCTYPE html>
@@ -23,6 +24,7 @@
 	lista = request.queryString("lista") 
 	if lista then
 		ObjUsuario.getAll()
+	else
 	end if
 	%>
 </body>

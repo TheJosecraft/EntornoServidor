@@ -6,13 +6,13 @@
 	<% end if
 	if Session("id_usuario") = 1 then %>
 		<% if pag = "actividades" then %>
-			<a href="">Introducir actividad</a>
+			<a href="insertarActividad.asp">Introducir actividad</a>
 			<a href="">Borrar actividad</a>
 			<a href="">Buscar actividad</a>
-			<a href="">Ver todas las actividades</a>
+			<a href="actividades.asp?lista=true">Ver todas las actividades</a>
 		<% end if %>
 		<% if pag = "clientes" then %>
-			<a href="">Introducir nuevo cliente</a>
+			<a href="insertarCliente.asp">Introducir nuevo cliente</a>
 			<a href="clientes.asp?lista=true">Lista de clientes</a>
 		<% end if %>
 		<% if pag = "eventos" then %>
@@ -24,7 +24,7 @@
 	<% else %>
 		<% if pag = "actividades" then %>
 			<a href="">Buscar actividad</a>
-			<a href="">Ver todas las actividades</a>
+			<a href="actividades.asp?lista=true">Ver todas las actividades</a>
 		<% end if %>
 		<% if pag = "clientes" then %>
 			<a href="">Ver factura</a>

@@ -1,4 +1,6 @@
+<% @ CODEPAGE = 65001 %>
 <!-- #include file ="../funciones.asp" -->
+<!-- #include file ="../../clases/actividad.asp" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +9,15 @@
 </head>
 <body>
 	<h1>Menu</h1>
-	<% menu("actividades") %>
+	<% menu("actividades") 
+	lista = request.queryString("lista")
+
+	if lista then
+		set act = new Actividad
+		act.getAll()
+	end if
+	%>
+
+
 </body>
 </html>

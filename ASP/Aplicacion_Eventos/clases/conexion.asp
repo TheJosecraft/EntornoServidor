@@ -3,7 +3,7 @@ Class Conexion
 
 	private con
 
-	public SUB Conexion()
+	public SUB Conectar()
 		set con = server.createObject("ADODB.Connection")
 		con.open("bd")
 	end SUB

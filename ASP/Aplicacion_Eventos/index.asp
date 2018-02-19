@@ -1,3 +1,4 @@
+<% @ CODEPAGE = 65001 %>
 <!-- #include file ="clases/conexion.asp" -->
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +23,7 @@
 	usuario = request.form("usuario")
 	password = request.form("password")
 	set ObjConexion = new Conexion
-	ObjConexion.Conexion()
+	ObjConexion.Conectar()
 	set datos = ObjConexion.consultar("select * from cliente where nombre = '" & usuario & "' and contra = '" & password & "'")
 	do while not datos.eof
 		if usuario = datos("nombre") AND password = datos("contra") then
