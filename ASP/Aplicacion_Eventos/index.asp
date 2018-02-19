@@ -21,19 +21,14 @@
 	usuario = request.form("usuario")
 	password = request.form("password")
 
-	response.write(usuario)
-	response.write(password)
-
-	set conexion = server.createObject("ADODB.Connection")
-
-	conexion.open("bd")
-
 	consulta = "select * from cliente where nombre = '" & usuario & "' and contra = '" & password & "'"
 
 	set datos = conexion.Execute(consulta)
 	do while not datos.eof
-
-		response.write(datos("codigo"))
+		if usuario = datos("nombre") AND password = datos("contra") then
+			Session("id_usuario") = datos("codigo")
+			response.redirect "asp/aplicacion.asp"
+		end if
 		datos.moveNext
 	loop
 	conexion.close
