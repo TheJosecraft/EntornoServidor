@@ -46,7 +46,6 @@ end SUB
 public SUB getById(id)
 	set ObjConexion = new Conexion
 	ObjConexion.Conexion()
-	dim datos
 	set datos = ObjConexion.consultar("SELECT * FROM CLIENTE WHERE codigo = " & id)
 
 	do while not datos.eof
@@ -55,6 +54,26 @@ public SUB getById(id)
 		response.write(datos("telefono") & "<br>")
 		response.write(datos("direccion") & "<br>")
 		response.write(datos("contra") & "<br>")
+		response.write("<br>")
+
+		datos.moveNext
+	loop
+
+	ObjConexion.cerrarConexion()
+end SUB
+
+public SUB getAll()
+	set ObjConexion = new Conexion
+	ObjConexion.Conexion()
+	set datos = ObjConexion.consultar("SELECT * FROM CLIENTE")
+
+	do while not datos.eof
+		response.write(datos("codigo") & "<br>")
+		response.write(datos("nombre") & "<br>")
+		response.write(datos("telefono") & "<br>")
+		response.write(datos("direccion") & "<br>")
+		response.write(datos("contra") & "<br>")
+		response.write("<br>")
 		datos.moveNext
 	loop
 

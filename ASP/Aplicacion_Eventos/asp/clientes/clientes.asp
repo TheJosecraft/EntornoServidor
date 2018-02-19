@@ -9,10 +9,13 @@
 <body>
 	<h1>Menu</h1>
 	<% menu("clientes") %>
+	<br>
 	<% 
 	set ObjUsuario = new Cliente
 	ObjUsuario.setNombre("Jose")
 	ObjUsuario.getById(2)
+	ObjUsuario.getAll()
+
 	dim lista
 	lista = request.queryString("lista") 
 	if lista then
