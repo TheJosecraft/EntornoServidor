@@ -1,3 +1,4 @@
+<!-- #include file ="clases/conexion.asp" -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,10 +21,9 @@
 	<%
 	usuario = request.form("usuario")
 	password = request.form("password")
-
-	consulta = "select * from cliente where nombre = '" & usuario & "' and contra = '" & password & "'"
-
-	set datos = conexion.Execute(consulta)
+	set ObjConexion = new Conexion
+	ObjConexion.Conexion()
+	set datos = ObjConexion.consultar("select * from cliente where nombre = '" & usuario & "' and contra = '" & password & "'")
 	do while not datos.eof
 		if usuario = datos("nombre") AND password = datos("contra") then
 			Session("id_usuario") = datos("codigo")
@@ -31,7 +31,7 @@
 		end if
 		datos.moveNext
 	loop
-	conexion.close
+	ObjConexion.cerrarConexion()
 
 	%>
 </body>

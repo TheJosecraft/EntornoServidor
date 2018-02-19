@@ -6,7 +6,7 @@
 	<title>Aplicación</title>
 </head>
 <body>
-	<% response.write("Bienvenido, " & Session("usuario")) %> 
+	<% response.write("Bienvenido, " & Session("id_usuario")) %> 
 	<h1>Menú</h1>
 	<% menu("aplicacion") %>
 </body>

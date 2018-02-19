@@ -13,13 +13,16 @@
 	<% 
 	set ObjUsuario = new Cliente
 	ObjUsuario.setNombre("Jose")
-	ObjUsuario.getById(2)
-	ObjUsuario.getAll()
+	ObjUsuario.setDireccion("Avenida de la Constitución")
+	ObjUsuario.setTelefono("957655755")
+	ObjUsuario.setContra("jose")
+
+	ObjUsuario.modificar(5)
 
 	dim lista
 	lista = request.queryString("lista") 
 	if lista then
-		response.write("Hola")
+		ObjUsuario.getAll()
 	end if
 	%>
 </body>

@@ -80,5 +80,12 @@ public SUB getAll()
 	ObjConexion.cerrarConexion()
 end SUB
 
+public SUB modificar(id)
+	set ObjConexion = new Conexion
+	ObjConexion.Conexion()
+	ObjConexion.consultar("UPDATE CLIENTE SET nombre = '" & m_nombre & "', telefono = '" & m_telefono & "', direccion = '" & m_direccion & "', contra = '" & m_contra & "' where codigo = " & id)
+	ObjConexion.cerrarConexion()
+end SUB
+
 End Class
 %>
