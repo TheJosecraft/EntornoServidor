@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insertar cliente</title>
+	<% get_header() %>
 </head>
 <body>
 	<% menu("clientes") %>

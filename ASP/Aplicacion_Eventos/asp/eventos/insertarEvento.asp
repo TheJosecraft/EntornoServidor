@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insertar Evento</title>
+	<% get_header() %>
 </head>
 <body>
 	<% menu("eventos") %>

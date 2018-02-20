@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Actividades</title>
+	<% get_header() %>
 </head>
 <body>
 	<h1>Menu</h1>

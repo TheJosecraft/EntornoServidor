@@ -5,6 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Acceder</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 <body>
 	<form action="#" method="post">

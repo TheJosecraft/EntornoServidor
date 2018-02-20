@@ -6,6 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insertar Actividad</title>
+	<% get_header() %>
 </head>
 <body>
 	<% menu("actividades") %>
