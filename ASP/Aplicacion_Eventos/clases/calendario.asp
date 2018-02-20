@@ -1,16 +1,15 @@
+<!-- #include file ="conexion.asp" -->
 <%
 Class Calendar 
 
 Private cShowDate 
 Private cValue 
-Private cBorder 
 Private cMonth 
 Private cYear 
 Private arrMonths(12) 
-Private cFonts 
-Private cFontSize 
 Private cShowNav 
 Private cShowForm 
+Private eventos()
 
 Private Sub  Class_Initialize() 
    cBorder = True
@@ -30,6 +29,15 @@ End Sub
 Private Sub Class_Terminate() 
 
 End Sub 
+
+private function diasEventos()
+ObjConexion = new Conexion
+ObjConexion.conectar()
+
+ObjConexion.consultar("SELECT fechaEvento FROM EVENTOS")
+
+ObjConexion.cerrarConexion()
+end function
 
 
 Public Property Let Border(byRef uBorder) 
@@ -137,9 +145,9 @@ Public Sub Display
 
    <%If cShowNav Then%> 
 	  
-		<td align="center"><a href="<%= Request.ServerVariables("SCRIPT_NAME") %>?CalAction=back&currMonth=<%=cMonth - 1%>&currYear=<%=cYear%>"><i class="fas fa-angle-left"></i></a></td> 
+		<td align="center"><a href="?CalAction=back&currMonth=<%=cMonth - 1%>&currYear=<%=cYear%>"><i class="fas fa-angle-left"></i></a></td> 
 		<td colspan="5"align="center"><b><%=arrMonths(cMonth) & " " & cYear%></b></td> 
-		<td align="center"><a href="<%= Request.ServerVariables("SCRIPT_NAME") %>?CalAction=forward&currMonth=<%=cMonth + 1%>&currYear=<%=cYear%>"><i class="fas fa-angle-right"></i></a></td> 
+		<td align="center"><a href="?CalAction=forward&currMonth=<%=cMonth + 1%>&currYear=<%=cYear%>"><i class="fas fa-angle-right"></i></a></td> 
 
    <%Else%> 
 	   <td colspan="7"align="center" ><b><%=arrMonths(cMonth) & " " & cYear%></b></td> 
@@ -147,17 +155,17 @@ Public Sub Display
    <%End If%> 
 
 	 </tr> 
-		 <th align="center" width=25 >D</th> 
 		 <th align="center" width=25 >L</th> 
 		 <th align="center" width=25 >M</th> 
 		 <th align="center" width=25 >X</th> 
 		 <th align="center" width=25 >J</th> 
 		 <th align="center" width=25 >V</th> 
-		 <th align="center" width=25 >S</th> 
+		 <th align="center" width=25 >S</th>
+		 <th align="center" width=25 >D</th>  
 	
 	 <tr> 
 	   <%i = 1 
-	   For j = 1 to cDay - 1%> 
+	   For j = 1 to cDay %> 
 		   <td align="center"></td> 
 		   <%If i > 6 Then 
 			   response.write("</tr><tr>") 
@@ -180,13 +188,8 @@ Public Sub Display
 	   End IF%> 
 	 </tr> 
    </table> 
-   <%If cBorder Then%> 
-	   </td></tr> 
-	   </table> 
-   <%End If 
-   If cShowForm Then BottomForm 
+   <% If cShowForm Then BottomForm
 End Sub 
-
 
 Private Sub BottomForm()%> 
    <table border="0" cellspacing=1 cellpadding=1 width=200> 
@@ -225,6 +228,6 @@ Private Function DaysInMonth()
    End Select 
 End Function 
 
-End Class 
+End Class  
 
 %>
