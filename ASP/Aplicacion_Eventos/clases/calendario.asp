@@ -13,32 +13,10 @@ Private cShowNav
 Private cShowForm 
 
 Private Sub  Class_Initialize() 
-   cBorder = True 
-'    arrMonths(1) = "January" 
-'    arrMonths(2) = "February" 
-'    arrMonths(3) = "March" 
-'    arrMonths(4) = "April" 
-'    arrMonths(5) = "May" 
-'    arrMonths(6) = "June" 
-'    arrMonths(7) = "July" 
-'    arrMonths(8) = "August" 
-'    arrMonths(9) = "September" 
-'    arrMonths(10) = "October" 
-'    arrMonths(11) = "November" 
-'    arrMonths(12) = "December" 
-   arrMonths(1) = "Jan" 
-   arrMonths(2) = "Feb" 
-   arrMonths(3) = "Mar" 
-   arrMonths(4) = "Apr" 
-   arrMonths(5) = "May" 
-   arrMonths(6) = "Jun" 
-   arrMonths(7) = "Jul" 
-   arrMonths(8) = "Aug" 
-   arrMonths(9) = "Sep" 
-   arrMonths(10) = "Oct" 
-   arrMonths(11) = "Nov" 
-   arrMonths(12) = "Dec" 
-
+   cBorder = True
+   for i = 1 to 12
+	arrMonths(i) = monthname(i)
+   next 
    cValue = Now 
    cMonth = Month(date()) 
    cYear = Year(date()) 
@@ -91,24 +69,6 @@ Public Property Get CalYear()
    CalYear = cYear 
 End Property 
 
-
-Public Property Let Fonts(byRef uFonts) 
-   cFonts = uFonts 
-End Property 
-
-Public Property Get Fonts() 
-   Fonts = cFonts 
-End Property 
-
-
-Public Property Let FontSize(byRef uFontSize) 
-   cFontSize = uFontSize 
-End Property 
-
-Public Property Get FontSize() 
-   FontSize = cFontSize 
-End Property 
-
 Public Property Let ShowNav(byRef uShowNav) 
    cShowNav = uShowNav 
 End Property 
@@ -135,95 +95,94 @@ End Property
 Public Sub Display 
    If cShowNav or cShowForm Then 
 
-       Select Case request("CalAction") 
+	   Select Case request("CalAction") 
 
-       Case "back" 
-           cYear = request("currYear") 
-           If request("currMonth") < 1 Then 
-               cMonth = 12 
-               cYear = request("currYear") - 1 
-           Else 
-               cMonth = request("currMonth") 
-           End If 
-       Case "forward" 
-    
-           cYear = request("currYear") 
-           If request("currMonth") > 12 Then 
-               cMonth = 1 
-               cYear = request("currYear") + 1 
-           Else 
-               cMonth = request("currMonth") 
-           End If 
-       Case "goto" 
-        
-           cMonth = request("currMonth") 
-           If request("currYear") <> "" Then 
-               cYear = Int(request("currYear")) 
-           End IF 
+	   Case "back" 
+		   cYear = request("currYear") 
+		   If request("currMonth") < 1 Then 
+			   cMonth = 12 
+			   cYear = request("currYear") - 1 
+		   Else 
+			   cMonth = request("currMonth") 
+		   End If 
+	   Case "forward" 
+	
+		   cYear = request("currYear") 
+		   If request("currMonth") > 12 Then 
+			   cMonth = 1 
+			   cYear = request("currYear") + 1 
+		   Else 
+			   cMonth = request("currMonth") 
+		   End If 
+	   Case "goto" 
+		
+		   cMonth = request("currMonth") 
+		   If request("currYear") <> "" Then 
+			   cYear = Int(request("currYear")) 
+		   End IF 
 
-       End Select 
+	   End Select 
    End If 
 
 
    cDay = Weekday(cMonth & "/" & 1 & "/" & cYear) 
 
-   Days = DaysInMonth() 
+   Days = DaysInMonth()
    If cBorder Then%> 
-       <table border="0" cellpadding=0 bgcolor="#000000"> 
-       <tr><td bgcolor="#FFFFFF"> 
+	   <table border="0" cellpadding=0 bgcolor="#000000"> 
+	   <tr><td bgcolor="#FFFFFF"> 
    <%End If%> 
    <table border="0" cellspacing=1 cellpadding=1> 
-     <tr> 
+	 <tr> 
 
    <%If cShowNav Then%> 
-      
-        <td align="center"><a href="<%= Request.ServerVariables("SCRIPT_NAME") %>?CalAction=back&currMonth=<%=cMonth - 1%>&currYear=<%=cYear%>">««</a></td> 
-        <td colspan="5"align="center"><b><%=arrMonths(cMonth) & " " & cYear%></b></td> 
-        <td align="center"><a href="<%= Request.ServerVariables("SCRIPT_NAME") %>?CalAction=forward&currMonth=<%=cMonth + 1%>&currYear=<%=cYear%>">»»</a></td> 
+	  
+		<td align="center"><a href="<%= Request.ServerVariables("SCRIPT_NAME") %>?CalAction=back&currMonth=<%=cMonth - 1%>&currYear=<%=cYear%>"><i class="fas fa-angle-left"></i></a></td> 
+		<td colspan="5"align="center"><b><%=arrMonths(cMonth) & " " & cYear%></b></td> 
+		<td align="center"><a href="<%= Request.ServerVariables("SCRIPT_NAME") %>?CalAction=forward&currMonth=<%=cMonth + 1%>&currYear=<%=cYear%>"><i class="fas fa-angle-right"></i></a></td> 
 
    <%Else%> 
-       <td colspan="7"align="center" bgcolor="#666666"><font color="#FFFFFF" size=<%=cFontSize%> face="<%=cFonts%>"><b><%=arrMonths(cMonth) & " " & cYear%></b></font></td> 
+	   <td colspan="7"align="center" ><b><%=arrMonths(cMonth) & " " & cYear%></b></td> 
 
    <%End If%> 
 
-     </tr> 
-       <tr> 
-       <td align="center" width=25 ><b>D</b></td> 
-       <td align="center" width=25 ><b>L</b></td> 
-       <td align="center" width=25 ><b>M</b></td> 
-       <td align="center" width=25 ><b>X</b></td> 
-       <td align="center" width=25 ><b>J</b></td> 
-       <td align="center" width=25 ><b>V</b></td> 
-       <td align="center" width=25 ><b>S</b></td> 
-     </tr> 
-     <tr> 
-       <%i = 1 
-       For j = 1 to cDay - 1%> 
-           <td align="center"></td> 
-           <%If i > 6 Then 
-               response.write("</tr><tr>") 
-               i = 0 
-           End If 
-           i = i + 1 
-       Next 
-       For j = 1 to Days%> 
-           <td align="center" ><b><%=j%></b></td> 
-           <%If i > 6 And j <= Days - 1 Then 
-               response.write("</tr><tr>") 
-               i = 0 
-           End If 
-           i = i + 1 
-       Next 
-       If i > 1 Then 
-           For m = i to 7%> 
-               <td align="center"></td> 
-           <%Next 
-       End IF%> 
-     </tr> 
+	 </tr> 
+		 <th align="center" width=25 >D</th> 
+		 <th align="center" width=25 >L</th> 
+		 <th align="center" width=25 >M</th> 
+		 <th align="center" width=25 >X</th> 
+		 <th align="center" width=25 >J</th> 
+		 <th align="center" width=25 >V</th> 
+		 <th align="center" width=25 >S</th> 
+	
+	 <tr> 
+	   <%i = 1 
+	   For j = 1 to cDay - 1%> 
+		   <td align="center"></td> 
+		   <%If i > 6 Then 
+			   response.write("</tr><tr>") 
+			   i = 0 
+		   End If 
+		   i = i + 1 
+	   Next 
+	   For j = 1 to Days%> 
+		   <td align="center" ><b><%=j%></b></td> 
+		   <%If i > 6 And j <= Days - 1 Then 
+			   response.write("</tr><tr>") 
+			   i = 0 
+		   End If 
+		   i = i + 1 
+	   Next 
+	   If i > 1 Then 
+		   For m = i to 7%> 
+			   <td align="center"></td> 
+		   <%Next 
+	   End IF%> 
+	 </tr> 
    </table> 
    <%If cBorder Then%> 
-       </td></tr> 
-       </table> 
+	   </td></tr> 
+	   </table> 
    <%End If 
    If cShowForm Then BottomForm 
 End Sub 
@@ -233,16 +192,16 @@ Private Sub BottomForm()%>
    <table border="0" cellspacing=1 cellpadding=1 width=200> 
    <form method="GET" action="<%= Request.ServerVariables("SCRIPT_NAME") %>"> 
    <tr> 
-   <td align="right" width="25%"><font color="#000000" size=<%=cFontSize%> face="<%=cFonts%>"><b>Month</b></font></td> 
+   <td align="right" width="25%"><font color="#000000" size=<%=cFontSize%> face="<%=cFonts%>"><b>Mes</b></font></td> 
    <td><select name="currMonth"> 
    <%For i = 1 to 12%> 
    <option value=<%=i%><%If i = Int(cMonth) Then response.write " Selected"%>><%=arrMonths(i)%></option> 
    <%Next%> 
    </select></td> 
-   <td align="right" width="25%"><font color="#000000" size=<%=cFontSize%> face="<%=cFonts%>"><b>Year</b></font></td> 
+   <td align="right" width="25%"><font color="#000000" size=<%=cFontSize%> face="<%=cFonts%>"><b>Año</b></font></td> 
    <td><input type="text" name="currYear" maxlength=4 size=4  value="<%=cYear%>"></td> 
    </tr> 
-   <tr><td colspan=4 align="right"><input type="submit" value="GO"></td></tr> 
+   <tr><td colspan=4 align="right"><input type="submit" value="Ir"></td></tr> 
    <input type="hidden" name="calAction" value="goto"> 
    </form> 
    </table> 
@@ -251,18 +210,18 @@ Private Sub BottomForm()%>
 
 Private Function DaysInMonth() 
    Select Case cMonth 
-       Case 1,3,5,7,8,10,12 
-           DaysInMonth = 31 
-       Case 4,5,6,9,11 
-           DaysInMonth = 30 
-       Case 2 
-           If cYear Mod 4 Then 
-               DaysInMonth = 28 
-           Else 
-               DaysInMonth = 29 
-           End If 
+	   Case 1,3,5,7,8,10,12 
+		   DaysInMonth = 31 
+	   Case 4,5,6,9,11 
+		   DaysInMonth = 30 
+	   Case 2 
+		   If cYear Mod 4 Then 
+			   DaysInMonth = 28 
+		   Else 
+			   DaysInMonth = 29 
+		   End If 
    Case Else 
-       Exit Function 
+	   Exit Function 
    End Select 
 End Function 
 
