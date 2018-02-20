@@ -27,7 +27,7 @@
 				<li class="nav-item"><a class="nav-link" href="insertarEvento.asp">Introducir nuevo evento</a></li>
 				<li class="nav-item"><a class="nav-link" href="">Borrar evento cancelado</a></li>
 				<li class="nav-item"><a class="nav-link" href="">Buscar un evento</a></li>
-				<li class="nav-item"><a class="nav-link" href="">Calendario de eventos</a></li>
+				<li class="nav-item"><a class="nav-link" href="calendarioEventos.asp">Calendario de eventos</a></li>
 				<li class="nav-item"><a class="nav-link" href="../aplicacion.asp">Volver</a></li>
 		<% end if %>
 	<% else %>
@@ -42,7 +42,7 @@
 		<% end if %>
 		<% if pag = "eventos" then %>
 				<li class="nav-item"><a href="">Buscar un evento</a></li>
-				<li class="nav-item"><a href="">Calendario de eventos</a></li>
+				<li class="nav-item"><a href="calendarioEventos.asp">Calendario de eventos</a></li>
 				<li class="nav-item"><a href="../aplicacion.asp">Volver</a></li>
 		<% end if %>
 	<% end if %>
