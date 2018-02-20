@@ -9,16 +9,27 @@
 	<% get_header() %>
 </head>
 <body>
-	<h1>Menu</h1>
-	<% menu("actividades") 
-	lista = request.queryString("lista")
+	<div id="wrapper" class="toggled">
+        <% menu("actividades") %>
+            <div id="page-content-wrapper">
+                <div class="container-fluid h-100">
+                    <div class="row h-100">
+                        <div class="col-12">
+                        	<h1>Lista de actividades</h1>
+                            <% response.write("Bienvenido, " & Session("id_usuario"))
+                            lista = request.queryString("lista")
 
-	if lista then
-		set act = new Actividad
-		act.getAll()
-	end if
-	%>
+							if lista then
+								set act = new Actividad
+								act.getAll()
+							end if
+							%>
 
-
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
 </body>
+<% get_footer() %>
 </html>

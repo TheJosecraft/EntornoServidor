@@ -6,35 +6,53 @@
 	<meta charset="UTF-8">
 	<title>Acceder</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-	<form action="#" method="post">
-		<label for="usuario">Usuario</label>
-		<br>
-		<input type="text" name="usuario" id="usuario">
-		<br>
-		<label for="">Contraseña</label>
-		<br>
-		<input type="text" name="password" id="password">
-		<br>
-		<br>
-		<input type="submit">
-	</form>
-	<%
-	usuario = request.form("usuario")
-	password = request.form("password")
-	set ObjConexion = new Conexion
-	ObjConexion.Conectar()
-	set datos = ObjConexion.consultar("select * from cliente where nombre = '" & usuario & "' and contra = '" & password & "'")
-	do while not datos.eof
-		if usuario = datos("nombre") AND password = datos("contra") then
-			Session("id_usuario") = datos("codigo")
-			response.redirect "asp/aplicacion.asp"
-		end if
-		datos.moveNext
-	loop
-	ObjConexion.cerrarConexion()
+<div class="back">
+	<div class="div-center">
+		<div class="content">
+			<h3>Acceder</h3>
+			<hr>
+			<form action="#" method="post">
+				<div class="form-group">	
+					<label for="usuario">Usuario</label>
+					<input class="form-control" type="text" name="usuario" id="usuario">
+				</div>
+				<div class="form-group">	
+					<label for="password">Contraseña</label>
+					<input class="form-control" type="text" name="password" id="password">
+				</div>
+				<input type="submit" name="enviar" value="Acceder" class="btn btn-primary">
+			</form>
+			<br>
+			<%
+			usuario = request.form("usuario")
+			password = request.form("password")
+			set ObjConexion = new Conexion
+			ObjConexion.Conectar()
+			set datos = ObjConexion.consultar("select * from cliente where nombre = '" & usuario & "' and contra = '" & password & "'")
+			if Request.Form("enviar") = "Acceder" then
+				if datos.eof then %>
+					<div class="alert alert-danger" role="alert">
+					  Los datos no son correctos
+					</div>
+				<%
+				end if
+			end if
 
-	%>
+			do while not datos.eof
+				if usuario = datos("nombre") AND password = datos("contra") then
+					Session("id_usuario") = datos("codigo")
+					response.redirect "asp/aplicacion.asp"
+				end if
+				datos.moveNext
+			loop
+			ObjConexion.cerrarConexion()
+
+			%>
+	</div>
+</div>	
+	
 </body>
 </html>

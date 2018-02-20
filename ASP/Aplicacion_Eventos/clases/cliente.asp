@@ -76,16 +76,29 @@ public SUB getAll()
 	ObjConexion.Conectar()
 	set datos = ObjConexion.consultar("SELECT * FROM CLIENTE")
 
+	response.write("<table class='table'>")
+	response.write("<thead class='thead-dark'>")
+	response.write("<tr>")
+	response.write("<th>Código</th>")
+	response.write("<th>Nombre</th>")
+	response.write("<th>Teléfono</th>")
+	response.write("<th>Dirección</th>")
+	response.write("<th>Contraseña</th>")
+	response.write("</tr>")
+	response.write("</thead>")
+	response.write("<tbody>")
 	do while not datos.eof
-		response.write(datos("codigo") & "<br>")
-		response.write(datos("nombre") & "<br>")
-		response.write(datos("telefono") & "<br>")
-		response.write(datos("direccion") & "<br>")
-		response.write(datos("contra") & "<br>")
-		response.write("<br>")
+		response.write("<tr>")
+		response.write("<td>" & datos("codigo") & "</td>")
+		response.write("<td>" & datos("nombre") & "</td>")
+		response.write("<td>" & datos("telefono") & "</td>")
+		response.write("<td>" & datos("direccion") & "</td>")
+		response.write("<td>" & datos("contra") & "</td>")
+		response.write("</tr>")
 		datos.moveNext
 	loop
-
+	response.write("</tbody>")
+	response.write("</table>")
 	ObjConexion.cerrarConexion()
 end SUB
 

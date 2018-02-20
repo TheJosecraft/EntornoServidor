@@ -1,31 +1,49 @@
 <% @ CODEPAGE = 65001 %>
-<!-- #include file ="../funciones.asp" -->
-<!-- #include file ="../../clases/cliente.asp" -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Insertar cliente</title>
-	<% get_header() %>
-</head>
-<body>
-	<% menu("clientes") %>
-	<form action="#" method="post">
-		<label for="nombre">Nombre</label>
-		<input type="text" name="nombre" id="nombre">
-		<br>
-		<label for="telefono">Telefono</label>
-		<input type="text" name="telefono" id="telefono">
-		<br>
-		<label for="direccion">Dirección</label>
-		<input type="text" name="direccion" id="direccion">
-		<br>
-		<label for="contra">Contraseña</label>
-		<input type="text" name="contra" id="contra">
-		<br>
-		<input type="submit" name="enviar" id="insertarCliente">
-	</form>
-	<%
+    <!-- #include file ="../funciones.asp" -->
+    <!-- #include file ="../../clases/cliente.asp" -->
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Insertar cliente</title>
+        <% get_header() %>
+    </head>
+
+    <body>
+        <div id="wrapper" class="toggled">
+            <% menu("clientes") %>
+                <div id="page-content-wrapper">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="col-12">
+                            	<h1>Insertar nuevo cliente</h1>
+                                <% response.write("Bienvenido, " & Session("id_usuario")) %>
+                                    <form action="#" method="post">
+                                        <div class="form-group">
+                                            <label for="nombre">Nombre</label>
+                                            <input class="form-control" type="text" name="nombre" id="nombre">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono">Telefono</label>
+                                            <input class="form-control" type="text" name="telefono" id="telefono">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="direccion">Dirección</label>
+                                            <input class="form-control" type="text" name="direccion" id="direccion">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contra">Contraseña</label>
+                                            <input class="form-control" type="text" name="contra" id="contra">
+                                        </div>
+                                        <input class="btn btn-success" type="submit" name="enviar" id="insertarCliente">
+                                    </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <%
 	if Request.Form("enviar") = "Enviar" then
 		response.write("Hola")
 		set c = new Cliente
@@ -38,5 +56,7 @@
 	end if
 	
 	%>
-</body>
-</html>
+    </body>
+    <% get_footer() %>
+
+    </html>

@@ -72,16 +72,32 @@ public SUB getAll()
 	ObjConexion.Conectar()
 	set datos = ObjConexion.consultar("SELECT * FROM ACTIVIDAD")
 
+	response.write("<table class='table'>")
+	response.write("<thead class='thead-dark'>")
+	response.write("<tr>")
+	response.write("<th>Código</th>")
+	response.write("<th>Nombre</th>")
+	response.write("<th>Descripción</th>")
+	response.write("<th>Duración</th>")
+	response.write("<th>Precio</th>")
+	response.write("<th>Acciones</th>")
+	response.write("</tr>")
+	response.write("</thead>")
+	response.write("<tbody>")
 	do while not datos.eof
-		response.write(datos("codigo") & "<br>")
-		response.write(datos("nombre") & "<br>")
-		response.write(datos("descripcion") & "<br>")
-		response.write(datos("duracion") & "<br>")
-		response.write(datos("precio") & "<br>")
-		response.write("<br>")
+		response.write("<tr>")
+		response.write("<td>" & datos("codigo") & "</td>")
+		response.write("<td>" & datos("nombre") & "</td>")
+		response.write("<td>" & datos("descripcion") & "</td>")
+		response.write("<td>" & datos("duracion") & "</td>")
+		response.write("<td>" & datos("precio") & "</td>")
+		response.write("<td><a class='btn btn-danger text-white' href='borrarActividad.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+		response.write("</tr>")
 		datos.moveNext
 	loop
 
+	response.write("</tbody>")
+	response.write("</table>")
 	ObjConexion.cerrarConexion()
 end SUB
 
@@ -99,6 +115,13 @@ public SUB modificar(id)
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
 	ObjConexion.consultar("UPDATE ACTIVIDAD SET nombre = '" & m_nombre & "', duracion = '" & m_desc & "', direccion = " & m_duracion & ", contra = " & m_precio & " where codigo = " & id)
+	ObjConexion.cerrarConexion()
+end SUB
+
+public SUB borrarActividad(id)
+	set ObjConexion = new Conexion
+	ObjConexion.Conectar()
+	ObjConexion.consultar("DELETE FROM ACTIVIDAD where codigo = " & id)
 	ObjConexion.cerrarConexion()
 end SUB
 
