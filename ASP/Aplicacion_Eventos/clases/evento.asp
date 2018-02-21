@@ -120,8 +120,7 @@ end SUB
 public SUB borrarEvento(id)
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
-	ObjConexion.consultar("UPDATE EVENTOS set actividad = 0 where codigo = " & id)
-	'ObjConexion.consultar("DELETE FROM EVENTOS where codigo = " & id)
+	ObjConexion.consultar("DELETE FROM EVENTOS where codigo = " & id)
 	ObjConexion.cerrarConexion()
 end SUB
 

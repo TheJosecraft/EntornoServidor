@@ -133,8 +133,9 @@ end SUB
 public SUB borrarActividad(id)
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
-	ObjConexion.consultar("UPDATE EVENTOS SET actividad = 0 where actividad = " & id)
-	'ObjConexion.consultar("DELETE FROM ACTIVIDAD where codigo = " & id)
+	'ObjConexion.consultar("UPDATE EVENTOS SET actividad = 0 where actividad = " & id)
+	ObjConexion.consultar("DELETE FROM EVENTOS where actividad = " & id)
+	ObjConexion.consultar("DELETE FROM ACTIVIDAD where codigo = " & id)
 	ObjConexion.cerrarConexion()
 end SUB
 
