@@ -92,7 +92,9 @@ public SUB getAll()
 	response.write("<th>Descripción</th>")
 	response.write("<th>Duración</th>")
 	response.write("<th>Precio</th>")
-	response.write("<th>Acciones</th>")
+	if Session("id_usuario") = 1 then
+		response.write("<th>Acciones</th>")
+	end if
 	response.write("</tr>")
 	response.write("</thead>")
 	response.write("<tbody>")
@@ -103,7 +105,9 @@ public SUB getAll()
 		response.write("<td>" & datos("descripcion") & "</td>")
 		response.write("<td>" & datos("duracion") & "h</td>")
 		response.write("<td>" & datos("precio") & " €</td>")
-		response.write("<td><a class='btn btn-danger text-white' href='borrarActividad.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+		if Session("id_usuario") = 1 then
+			response.write("<td><a class='btn btn-danger text-white' href='borrarActividad.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+		end if
 		response.write("</tr>")
 		datos.moveNext
 	loop

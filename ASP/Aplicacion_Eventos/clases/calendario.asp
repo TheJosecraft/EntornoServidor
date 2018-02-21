@@ -1,4 +1,3 @@
-<!-- #include file ="conexion.asp" -->
 <%
 Class Calendar 
 
@@ -23,21 +22,33 @@ Private Sub  Class_Initialize()
    cFontSize = 2 
    cShowNav = False 
    cShowForm = False 
-   cShowDate = False 
+   cShowDate = False
+   dim cEventos()
+   diasEventos()
 End Sub 
 
 Private Sub Class_Terminate() 
 
 End Sub 
 
-private function diasEventos()
-ObjConexion = new Conexion
+private sub diasEventos()
+set ObjConexion = new Conexion
 ObjConexion.conectar()
+i = 0
 
-ObjConexion.consultar("SELECT fechaEvento FROM EVENTOS")
+redim cEventos(1)
 
+set datos = ObjConexion.consultar("SELECT DISTINCT fecha_evento FROM EVENTOS order by fecha_evento")
+
+do while not datos.eof
+
+	cEventos(i) = datos("fecha_evento")
+	i = i + 1
+	redim preserve cEventos(i)
+	datos.moveNext
+loop
 ObjConexion.cerrarConexion()
-end function
+end sub
 
 
 Public Property Let Border(byRef uBorder) 

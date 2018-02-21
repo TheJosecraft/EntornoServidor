@@ -1,5 +1,6 @@
 <% @ CODEPAGE = 65001 %>
 <!-- #include file ="../funciones.asp" -->
+<!-- #include file ="../../clases/conexion.asp" -->
 <!--#include file="../../clases/calendario.asp"-->
 <% sesiones() %> 
 <!DOCTYPE html>
