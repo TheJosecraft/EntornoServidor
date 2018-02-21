@@ -50,9 +50,9 @@
 				<li class="nav-item"><a class="nav-link" href="../aplicacion.asp"><i class="fas fa-arrow-circle-left"></i> Volver</a></li>
 		<% end if %>
 		<% if pag = "aplicacion" then%>
-				<li class="nav-item"><a class="nav-link" href="../index.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+				<li class="nav-item"><a class="nav-link" href="cerrarSesion.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
 		<% else %>
-				<li class="nav-item"><a class="nav-link" href="../../index.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+				<li class="nav-item"><a class="nav-link" href="../cerrarSesion.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
 		<% end if %>
 		
 	<% end if %>
@@ -73,5 +73,15 @@ SUB get_footer() %>
 	<script type="text/javascript" href="../../js/popper.min.js"></script>
 	<script type="text/javascript" href="../../js/bootstrap.min.js"></script>
 <% END SUB
+
+SUB sesiones()
+	if Session("id_usuario") = "" then
+		response.redirect("../../index.asp")
+	end if
+END SUB
+
+SUB cerrarSesion()
+	Session.abandon
+END SUB
 %>
 

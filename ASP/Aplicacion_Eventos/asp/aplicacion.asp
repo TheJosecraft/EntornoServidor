@@ -1,4 +1,5 @@
 <!-- #include file ="funciones.asp" -->
+<% sesiones() %>
 <!DOCTYPE html>
 <html lang="en">
 

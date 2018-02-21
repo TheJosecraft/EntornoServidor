@@ -3,6 +3,7 @@
     <!-- #include file ="../../clases/conexion.asp" -->
     <!-- #include file ="../../clases/evento.asp" -->
     <!-- #include file ="../../clases/actividad.asp" -->
+    <% sesiones() %>
     <!DOCTYPE html>
     <html lang="en">
 
