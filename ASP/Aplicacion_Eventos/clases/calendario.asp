@@ -212,15 +212,11 @@ Public Sub Display
                 wend
 
                 For j = 1 To Days
-                   
-                   'Response.write("Inicio semana: " & inicioSemana)
                    Response.Write("<td>" & j & "</td>")
-                    
-                    If contCeldas MOD 7 = 0 AND contCeldas <> 0 Then
-                        %>
+                   
+                    If contCeldas MOD 7 = 0 AND contCeldas <> 0 Then %>
                             </tr><tr>
-                        <%
-                        contCeldas = 0
+                    <% contCeldas = 0
                     End if
                     'Response.write("Contador: " & contCeldas & "<br>")
 
