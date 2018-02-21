@@ -1,51 +1,50 @@
-<!-- #include file ="conexion.asp" -->
 <%
 Class Actividad
 
-	private m_codigo
-	private m_nombre
-	private m_desc
-	private m_duracion
-	private m_precio
+	private a_codigo
+	private a_nombre
+	private a_desc
+	private a_duracion
+	private a_precio
 
 	public function getCodigo()
-	getCodigo = m_codigo
+		getCodigo = a_codigo
 	end function
 
 	public SUB setCodigo(codigo)
-		m_codigo = codigo
+		a_codigo = codigo
 	end SUB
 
 	public function getNombre()
-		getNombre = m_nombre
+		getNombre = a_nombre
 	end function
 
 	public SUB setNombre(nombre)
-		m_nombre = nombre
+		a_nombre = nombre
 	end SUB
 
 	public function getDesc()
-		getDesc = m_desc
+		getDesc = a_desc
 	end function
 
 	public SUB setDesc(descripcion)
-		m_desc = descripcion
+		a_desc = descripcion
 	end SUB
 
 	public function getDuracion()
-		getDuracion = m_duracion
+		getDuracion = a_duracion
 	end function
 
 	public SUB setDuracion(duracion)
-		m_duracion = duracion
+		a_duracion = duracion
 	end SUB
 
 	public function getPrecio()
-		getPrecio = m_precio
+		getPrecio = a_precio
 	end function
 
 	public SUB setPrecio(precio)
-		m_precio = precio
+		a_precio = precio
 	end SUB
 
 	public SUB getById(id)
@@ -66,6 +65,19 @@ Class Actividad
 
 	ObjConexion.cerrarConexion()
 end SUB
+
+public function getNombreById(id)
+	set ObjConexion = new Conexion
+	ObjConexion.Conectar()
+	set datos = ObjConexion.consultar("SELECT * FROM ACTIVIDAD WHERE codigo = " & id)
+
+	do while not datos.eof
+		getNombreById = datos("nombre")
+		datos.moveNext
+	loop
+
+	ObjConexion.cerrarConexion()
+end function
 
 public SUB getAll()
 	set ObjConexion = new Conexion
@@ -105,7 +117,7 @@ public SUB insertarActividad()
 
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
-	ObjConexion.consultar("INSERT INTO ACTIVIDAD (nombre, descripcion, duracion, precio) VALUES ('" & m_nombre & "', '" & m_desc & "'," & m_duracion & ", " & m_precio & ")")
+	ObjConexion.consultar("INSERT INTO ACTIVIDAD (nombre, descripcion, duracion, precio) VALUES ('" & a_nombre & "', '" & a_desc & "'," & a_duracion & ", " & a_precio & ")")
 
 	ObjConexion.cerrarConexion()
 
@@ -114,14 +126,15 @@ end SUB
 public SUB modificar(id)
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
-	ObjConexion.consultar("UPDATE ACTIVIDAD SET nombre = '" & m_nombre & "', duracion = '" & m_desc & "', direccion = " & m_duracion & ", contra = " & m_precio & " where codigo = " & id)
+	ObjConexion.consultar("UPDATE ACTIVIDAD SET nombre = '" & a_nombre & "', duracion = '" & a_desc & "', direccion = " & a_duracion & ", contra = " & a_precio & " where codigo = " & id)
 	ObjConexion.cerrarConexion()
 end SUB
 
 public SUB borrarActividad(id)
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
-	ObjConexion.consultar("DELETE FROM ACTIVIDAD where codigo = " & id)
+	ObjConexion.consultar("UPDATE EVENTOS SET actividad = 0 where actividad = " & id)
+	'ObjConexion.consultar("DELETE FROM ACTIVIDAD where codigo = " & id)
 	ObjConexion.cerrarConexion()
 end SUB
 

@@ -1,5 +1,6 @@
 <% @ CODEPAGE = 65001 %>
     <!-- #include file ="../funciones.asp" -->
+    <!-- #include file ="../../clases/conexion.asp" -->
     <!-- #include file ="../../clases/actividad.asp" -->
     <!DOCTYPE html>
     <html lang="en">
@@ -43,7 +44,7 @@
                         </div>
                     </div>
             </div>
-            <%
+        <%
 	if Request.Form("enviar") = "Enviar" then
 		set act = new Actividad
 		act.setNombre(Request.Form("nombre"))

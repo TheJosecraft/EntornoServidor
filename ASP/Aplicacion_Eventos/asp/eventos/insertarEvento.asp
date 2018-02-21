@@ -1,6 +1,8 @@
 <% @ CODEPAGE = 65001 %>
     <!-- #include file ="../funciones.asp" -->
+    <!-- #include file ="../../clases/conexion.asp" -->
     <!-- #include file ="../../clases/evento.asp" -->
+    <!-- #include file ="../../clases/actividad.asp" -->
     <!DOCTYPE html>
     <html lang="en">
 
@@ -22,11 +24,39 @@
                                         <form action="#" method="post">
                                             <div class="form-group">
                                                 <label for="actividad">Actividad</label>
-                                                <input class="form-control" type="text" name="actividad" id="actividad">
+                                                <select class="form-control" name="actividad" id="actividad">
+                                                    <%
+                                                    set ObjConexion = new Conexion
+                                                    ObjConexion.Conectar()
+                                                    set datos = ObjConexion.consultar("SELECT codigo, nombre FROM ACTIVIDAD")
+
+                                                    do while not datos.eof %>
+                                                        <option value="<%= datos("codigo") %>"><%= datos("nombre") %></option>
+
+                                                    <% 
+                                                    datos.moveNext
+                                                    loop 
+                                                    ObjConexion.cerrarConexion()
+                                                    %>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="cliente">Cliente</label>
-                                                <input class="form-control" type="text" name="cliente" id="cliente">
+                                                <select class="form-control" name="cliente" id="cliente">
+                                                    <%
+                                                    set ObjConexion = new Conexion
+                                                    ObjConexion.Conectar()
+                                                    set datos = ObjConexion.consultar("SELECT codigo, nombre FROM CLIENTE")
+
+                                                    do while not datos.eof %>
+                                                        <option value="<%= datos("codigo") %>"><%= datos("nombre") %></option>
+
+                                                    <% 
+                                                    datos.moveNext
+                                                    loop 
+                                                    ObjConexion.cerrarConexion()
+                                                    %>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="fechaContrato">Fecha de Contratación</label>
@@ -44,8 +74,6 @@
                     </div>
             </div>
             <%
-	'set e1 = new Evento
-	'e1.setFechaContrato("19/02/2018")
 
 	if Request.Form("enviar") = "Enviar" then
 		set e = new Evento

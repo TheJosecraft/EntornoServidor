@@ -1,5 +1,6 @@
 <% @ CODEPAGE = 65001 %>
     <!-- #include file ="../funciones.asp" -->
+    <!-- #include file ="../../clases/conexion.asp" -->
     <!-- #include file ="../../clases/cliente.asp" -->
     <!DOCTYPE html>
     <html lang="en">

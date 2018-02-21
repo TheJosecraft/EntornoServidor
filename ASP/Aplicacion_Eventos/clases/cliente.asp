@@ -1,4 +1,3 @@
-<!-- #include file ="conexion.asp" -->
 <%
 Class cliente
 
@@ -54,7 +53,7 @@ end SUB
 
 public SUB getById(id)
 	set ObjConexion = new Conexion
-	ObjConexion.Conexion()
+	ObjConexion.Conectar()
 	set datos = ObjConexion.consultar("SELECT * FROM CLIENTE WHERE codigo = " & id)
 
 	do while not datos.eof
@@ -70,6 +69,19 @@ public SUB getById(id)
 
 	ObjConexion.cerrarConexion()
 end SUB
+
+public function getNombreById(id)
+	set ObjConexion = new Conexion
+	ObjConexion.Conectar()
+	set datos = ObjConexion.consultar("SELECT * FROM CLIENTE WHERE codigo = " & id)
+
+	do while not datos.eof
+		getNombreById = datos("nombre")
+		datos.moveNext
+	loop
+
+	ObjConexion.cerrarConexion()
+end function
 
 public SUB getAll()
 	set ObjConexion = new Conexion
