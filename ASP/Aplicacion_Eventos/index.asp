@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<title>Acceder</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/fontawesome-all.min.css">
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -23,7 +24,7 @@
 					<label for="password">Contraseña</label>
 					<input class="form-control" type="text" name="password" id="password">
 				</div>
-				<input type="submit" name="enviar" value="Acceder" class="btn btn-primary">
+				<button type="submit" name="enviar" value="Acceder" class="btn btn-primary">Acceder <i class="fas fa-sign-in-alt"></i></button>
 			</form>
 			<br>
 			<%

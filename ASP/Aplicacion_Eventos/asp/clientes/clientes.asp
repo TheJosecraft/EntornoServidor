@@ -30,11 +30,15 @@
 										ObjUsuario.modificar(5)
 
 										dim lista
-										lista = request.queryString("lista") 
+                                        lista = request.queryString("lista") 
+										factura = request.queryString("factura") 
 										if lista then
 											ObjUsuario.getAll()
-										else
 										end if
+
+                                        if factura then
+                                            ObjUsuario.getFactura()
+                                        end if
 									%>
                             </div>
                         </div>
