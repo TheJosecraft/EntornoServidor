@@ -41,8 +41,8 @@
 		<% end if %>
 		<% if pag = "eventos" then %>
 				<li class="nav-item"><a class="nav-link" href=""><i class="fas fa-search"></i> Buscar un evento</a></li>
-				<li class="nav-item"><a class="nav-link" href="calendarioEventos.asp">Calendario de eventos</a></li>
-				<li class="nav-item"><a class="nav-link" href="../aplicacion.asp">Volver</a></li>
+				<li class="nav-item"><a class="nav-link" href="calendarioEventos.asp"><i class="far fa-calendar-alt"></i> Calendario de eventos</a></li>
+				<li class="nav-item"><a class="nav-link" href="../aplicacion.asp"><i class="fas fa-arrow-circle-left"></i> Volver</a></li>
 		<% end if %>
 	<% end if %>
 </ul>	
