@@ -20,7 +20,6 @@
                             <% response.write("Bienvenido, " & Session("id_usuario")) %>
                             <%
 							Set myCal = New Calendar 
-							mycal.border=false 'Display Border around Calendar 
 							mycal.value = Now 'Sets Current Date 
 							mycal.calMonth = month(date()) 'Sets Current Month 
 							mycal.calYear = year(date()) 'Sets Current Year 

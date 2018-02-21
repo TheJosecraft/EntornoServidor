@@ -83,5 +83,16 @@ END SUB
 SUB cerrarSesion()
 	Session.abandon
 END SUB
+
+function in_array(elemento, arr)
+  Dim i
+  in_array = False
+  For i=0 To uBound(arr)
+  	 	If arr(i) = elemento Then
+        in_array = True
+        Exit Function      
+    End If    
+  Next
+End Function
 %>
 

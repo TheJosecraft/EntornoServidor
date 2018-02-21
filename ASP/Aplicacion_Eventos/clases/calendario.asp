@@ -8,7 +8,7 @@ Private cYear
 Private arrMonths(12) 
 Private cShowNav 
 Private cShowForm 
-Private eventos()
+Private cEventos
 
 Private Sub  Class_Initialize() 
    cBorder = True
@@ -23,18 +23,17 @@ Private Sub  Class_Initialize()
    cShowNav = False 
    cShowForm = False 
    cShowDate = False
-   dim cEventos()
-   diasEventos()
+   dim cEventos
+   cEventos = diasEventos()
 End Sub 
 
 Private Sub Class_Terminate() 
 
 End Sub 
 
-private sub diasEventos()
+private function diasEventos()
 set ObjConexion = new Conexion
 ObjConexion.conectar()
-i = 0
 
 redim cEventos(1)
 
@@ -42,23 +41,12 @@ set datos = ObjConexion.consultar("SELECT DISTINCT fecha_evento FROM EVENTOS ord
 
 do while not datos.eof
 
-	cEventos(i) = datos("fecha_evento")
-	i = i + 1
-	redim preserve cEventos(i)
+	cEventos(uBound(cEventos)) = datos("fecha_evento")
+	redim preserve cEventos(uBound(cEventos) + 1)
 	datos.moveNext
 loop
 ObjConexion.cerrarConexion()
-end sub
-
-
-Public Property Let Border(byRef uBorder) 
-   cBorder = uBorder 
-End Property 
-
-Public Property Get Border() 
-   Border = cBorder 
-End Property 
-
+end function
 
 Public Property Get Value() 
    Value = cValue 
@@ -109,6 +97,12 @@ End Property
 Public Property Let ShowDate(byRef uShowDate) 
    cShowDate = uShowDate 
 End Property 
+
+Public sub getEventos()
+	for i = 0 to uBound(cEventos)
+		response.write(cEventos(i) & "<br>")
+	next
+end SUB
 
 
 Public Sub Display 
@@ -212,7 +206,16 @@ Public Sub Display
                 wend
 
                 For j = 1 To Days
-                   Response.Write("<td>" & j & "</td>")
+                	DIM fec
+                	fec = j & "/" & cMonth & "/" & cYear
+                	fec = cDate(fec)
+
+                	if in_array(fec, cEventos) then
+                		Response.Write("<td><a href='?dia=" & j & "&currMonth=" & cMonth & "&currYear=" & cYear & "'>" & j & "</a></td>")
+                	else
+                		Response.Write("<td>" & j & "</td>")
+               		end if
+                   
                    
                     If contCeldas MOD 7 = 0 AND contCeldas <> 0 Then %>
                             </tr><tr>
