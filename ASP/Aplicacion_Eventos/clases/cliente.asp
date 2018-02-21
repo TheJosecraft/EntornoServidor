@@ -114,6 +114,41 @@ public SUB getAll()
 	ObjConexion.cerrarConexion()
 end SUB
 
+public SUB getFactura(id)
+	set ObjConexion = new Conexion
+	ObjConexion.Conectar()
+	set datos = ObjConexion.consultar("SELECT act.codigo, act.precio, eve.fecha_contrato, eve.fecha_evento FROM CLIENTE cli, ACTIVIDAD act, EVENTOS eve where cli.codigo = eve.cliente and act.codigo = eve.actividad and eve.cliente = " & id)
+	set act = new Actividad
+	precioTotal = 0
+	response.write("<table class='table'>")
+	response.write("<thead class='thead-dark'>")
+	response.write("<tr>")
+	response.write("<th>Actividad</th>")
+	response.write("<th>Fecha Contrato</th>")
+	response.write("<th>Fecha Evento</th>")
+	response.write("<th>Precio</th>")
+	response.write("</tr>")
+	response.write("</thead>")
+	response.write("<tbody>")
+	do while not datos.eof
+		response.write("<tr>")
+		response.write("<td>" & act.getNombreById(datos("codigo")) & "</td>")
+		response.write("<td>" & datos("fecha_contrato") & "</td>")
+		response.write("<td>" & datos("fecha_evento") & "</td>")
+		response.write("<td>" & datos("precio") & "</td>")
+		response.write("</tr>")
+		precioTotal = precioTotal + cint(datos("precio"))
+		datos.moveNext
+	loop
+	response.write("<tr>")
+	response.write("<th scope='row' colspan='3'>Total</th>")
+	response.write("<td>" & precioTotal & "</th>")
+	response.write("</tr>")
+	response.write("</tbody>")
+	response.write("</table>")
+	ObjConexion.cerrarConexion()
+end SUB
+
 public SUB insertarCliente()
 
 	set ObjConexion = new Conexion

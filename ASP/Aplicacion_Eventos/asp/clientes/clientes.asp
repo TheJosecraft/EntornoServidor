@@ -1,6 +1,7 @@
 <% @ CODEPAGE = 65001 %>
     <!-- #include file ="../funciones.asp" -->
     <!-- #include file ="../../clases/conexion.asp" -->
+    <!-- #include file ="../../clases/actividad.asp" -->
     <!-- #include file ="../../clases/cliente.asp" -->
     <!DOCTYPE html>
     <html lang="en">
@@ -18,8 +19,7 @@
                     <div class="container-fluid h-100">
                         <div class="row h-100">
                             <div class="col-12">
-                                <h1>Menu</h1>
-                                <% response.write("Bienvenido, " & Session("id_usuario")) %>
+                                
                                     <%
 										set ObjUsuario = new Cliente
 										ObjUsuario.setNombre("Jose")
@@ -33,11 +33,12 @@
                                         lista = request.queryString("lista") 
 										factura = request.queryString("factura") 
 										if lista then
+                                            response.write("<h1>Lista de clientes</h1>")
 											ObjUsuario.getAll()
 										end if
-
+                                            response.write("<h1>Factura de " & ObjUsuario.getNombreById(Session("id_usuario")) & "</h1>")
                                         if factura then
-                                            ObjUsuario.getFactura()
+                                            ObjUsuario.getFactura(Session("id_usuario"))
                                         end if
 									%>
                             </div>

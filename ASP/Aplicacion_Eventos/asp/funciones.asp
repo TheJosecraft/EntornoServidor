@@ -29,6 +29,11 @@
 				<li class="nav-item"><a class="nav-link" href="calendarioEventos.asp"><i class="far fa-calendar-alt"></i> Calendario de eventos</a></li>
 				<li class="nav-item"><a class="nav-link" href="../aplicacion.asp"><i class="fas fa-arrow-circle-left"></i> Volver</a></li>
 		<% end if %>
+		<% if pag = "aplicacion" then%>
+				<li class="nav-item"><a class="nav-link" href="../index.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+		<% else %>
+				<li class="nav-item"><a class="nav-link" href="../../index.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+		<% end if %>
 	<% else %>
 		<% if pag = "actividades" then %>
 				<li class="nav-item"><a class="nav-link" href=""><i class="fas fa-search"></i> Buscar actividad</a></li>
@@ -36,7 +41,7 @@
 				<li class="nav-item"><a class="nav-link" href="../aplicacion.asp"><i class="fas fa-arrow-circle-left"></i> Volver</a></li>
 		<% end if %>
 		<% if pag = "clientes" then %>
-				<li class="nav-item"><a class="nav-link" href=""><i class="fas fa-money-bill-alt"></i> Ver factura</a></li>
+				<li class="nav-item"><a class="nav-link" href="?factura=true"><i class="fas fa-money-bill-alt"></i> Ver factura</a></li>
 				<li class="nav-item"><a class="nav-link" href="../aplicacion.asp"><i class="fas fa-arrow-circle-left"></i> Volver</a></li>
 		<% end if %>
 		<% if pag = "eventos" then %>
@@ -44,6 +49,12 @@
 				<li class="nav-item"><a class="nav-link" href="calendarioEventos.asp"><i class="far fa-calendar-alt"></i> Calendario de eventos</a></li>
 				<li class="nav-item"><a class="nav-link" href="../aplicacion.asp"><i class="fas fa-arrow-circle-left"></i> Volver</a></li>
 		<% end if %>
+		<% if pag = "aplicacion" then%>
+				<li class="nav-item"><a class="nav-link" href="../index.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+		<% else %>
+				<li class="nav-item"><a class="nav-link" href="../../index.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+		<% end if %>
+		
 	<% end if %>
 </ul>	
 </li>
