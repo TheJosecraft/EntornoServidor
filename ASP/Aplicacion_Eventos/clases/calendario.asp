@@ -144,13 +144,25 @@ Public Sub Display
    End If 
 
 
-   cDay = Weekday(cMonth & "/" & 1 & "/" & cYear) 
+' if cMonth - 1 = 0 then
+' 	cMonth = 12
+' 	cYear = cYear - 1
+' elseif cMonth + 1 = 13 then
+' 	cMonth = 1
+' 	cYear = cYear + 1
+' end if
+	diasMes =  "01/" & cMonth & "/" & cYear
+  
+    if cMonth = 12 then
+		diasMes = "01/01/" & cYear + 1
+	else
+		diasMes = "01/" & cMonth + 1 & "/" & cYear
+	end if
+	fecha = cdate(diasMes)
+	inicioSemana = Weekday(diasMes, VBMONDAY) 
 
    Days = DaysInMonth()
-   If cBorder Then%> 
-	   <table border="0" cellpadding=0 bgcolor="#000000"> 
-	   <tr><td bgcolor="#FFFFFF"> 
-   <%End If%> 
+  %> 
    <table border="0" cellspacing=1 cellpadding=1> 
 	 <tr> 
 
@@ -175,30 +187,47 @@ Public Sub Display
 		 <th align="center" width=25 >D</th>  
 	
 	 <tr> 
-	   <%i = 1 
-	   For j = 1 to cDay %> 
-		   <td align="center"></td> 
-		   <%If i > 6 Then 
-			   response.write("</tr><tr>") 
-			   i = 0 
-		   End If 
-		   i = i + 1 
-	   Next 
-	   For j = 1 to Days%> 
-		   <td align="center" ><b><%=j%></b></td> 
-		   <%If i > 6 And j <= Days - 1 Then 
-			   response.write("</tr><tr>") 
-			   i = 0 
-		   End If 
-		   i = i + 1 
-	   Next 
-	   If i > 1 Then 
-		   For m = i to 7%> 
-			   <td align="center"></td> 
-		   <%Next 
-	   End IF%> 
-	 </tr> 
-   </table> 
+	   <%
+
+				Cadfecha = "01/" & cMonth & "/" & cYear
+
+				if i = 12 then
+					diasMes = "01/01/" & cYear
+				else
+					diasMes = "01/" & cMonth +1 & "/" & cYear
+				end if
+				
+                
+                fecha = Cdate(Cadfecha)
+                inicioSemana = Weekday(fecha, VBMONDAY)
+                ultimoDia = dateadd("d", -1, diasMes)
+                numDias = day(ultimoDia)
+                contCeldas = 1
+
+                while (inicioSemana > 1)
+					Response.write("<td>&nbsp;</td>")
+                	contCeldas = contCeldas + 1
+                	inicioSemana = inicioSemana - 1
+                	'Response.write("Contador: " & contCeldas & "<br>")
+                wend
+
+                For j = 1 To Days
+                   
+                   'Response.write("Inicio semana: " & inicioSemana)
+                   Response.Write("<td>" & j & "</td>")
+                    
+                    If contCeldas MOD 7 = 0 AND contCeldas <> 0 Then
+                        %>
+                            </tr><tr>
+                        <%
+                        contCeldas = 0
+                    End if
+                    'Response.write("Contador: " & contCeldas & "<br>")
+
+                    contCeldas = contCeldas + 1
+                Next
+				%>
+			</table>
    <% If cShowForm Then BottomForm
 End Sub 
 

@@ -36,7 +36,7 @@
 
 				Cadfecha = "01/" & i & "/2018"
 
-				if(i = 12) then
+				if i = 12 then
 					diasMes = "01/01/2019"
 				else
 					diasMes = "01/" & i +1 & "/2018"
@@ -71,8 +71,6 @@
 
                     contCeldas = contCeldas + 1
                 Next
-
-                
 				%>
 			</table>
             <%
