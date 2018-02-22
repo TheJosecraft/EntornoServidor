@@ -7,6 +7,10 @@ Class Evento
 	private e_fecha_contrato
 	private e_fecha_evento
 
+	Private Sub  Class_Initialize() 
+	   e_fecha_contrato = date()
+	End Sub 
+
 	public function getCodigo()
 		getCodigo = e_codigo
 	end function

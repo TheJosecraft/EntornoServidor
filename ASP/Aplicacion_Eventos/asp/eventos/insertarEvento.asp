@@ -60,10 +60,6 @@
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="fechaContrato">Fecha de Contratación</label>
-                                                <input class="form-control" type="date" name="fechaContrato" id="fechaContrato">
-                                            </div>
-                                            <div class="form-group">
                                                 <label for="fechaEvento">Fecha de Evento</label>
                                                 <input class="form-control" type="date" name="fechaEvento" id="fechaEvento">
                                             </div>
@@ -82,7 +78,6 @@
 		' response.write(e.getFechaContrato & "<br>")
 		e.setActividad(request.form("actividad"))
 		e.setCliente(request.form("cliente"))
-		e.setFechaContrato(request.form("fechaContrato"))
 		e.setFechaEvento(request.form("fechaEvento"))
 
 		e.insertarEvento()
