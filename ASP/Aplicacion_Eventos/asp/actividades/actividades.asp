@@ -18,12 +18,26 @@
                     <div class="row h-100">
                         <div class="col-12">
                         	<h1>Lista de actividades</h1>
-                            <% response.write("Bienvenido, " & Session("id_usuario"))
+                            <form method="get" action="#">
+                                <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Buscar evento" name="busqueda" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <input type="hidden" class="form-control" placeholder="Buscar evento" name="buscar" value="true" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                  <div class="input-group-append">
+                                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                                  </div>
+                                </div>
+                            </form>
+                            <% 
                             lista = request.queryString("lista")
+                            buscar = request.queryString("buscar")
+                            busqueda = request.queryString("busqueda")
 
 							if lista then
 								set act = new Actividad
 								act.getAll()
+                            elseif buscar then
+                                set act = new Actividad
+                                act.buscarActividad(busqueda)
 							end if
 							%>
 

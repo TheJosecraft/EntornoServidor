@@ -143,5 +143,51 @@ public SUB borrarActividad(id)
 	ObjConexion.cerrarConexion()
 end SUB
 
+public SUB buscarActividad(busqueda)
+
+	set ObjConexion = new Conexion
+	ObjConexion.conectar()
+
+	set datos = ObjConexion.consultar("SELECT * FROM ACTIVIDAD  where nombre like '%" & busqueda & "%'")
+
+	if not datos.eof then
+		response.write("<table class='table'>")
+		response.write("<thead class='thead-dark'>")
+		response.write("<tr>")
+		response.write("<th>Código</th>")
+		response.write("<th>Nombre</th>")
+		response.write("<th>Descripción</th>")
+		response.write("<th>Duración</th>")
+		response.write("<th>Precio</th>")
+		if Session("id_usuario") = 1 then
+			response.write("<th>Acciones</th>")
+		end if
+		response.write("</tr>")
+		response.write("</thead>")
+		response.write("<tbody>")
+		do while not datos.eof
+			response.write("<tr>")
+			response.write("<td>" & datos("codigo") & "</td>")
+			response.write("<td>" & datos("nombre") & "</td>")
+			response.write("<td>" & datos("descripcion") & "</td>")
+			response.write("<td>" & datos("duracion") & "h</td>")
+			response.write("<td>" & datos("precio") & " €</td>")
+			if Session("id_usuario") = 1 then
+				response.write("<td><a class='btn btn-danger text-white' href='borrarActividad.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+			end if
+			response.write("</tr>")
+			datos.moveNext
+		loop
+
+		response.write("</tbody>")
+		response.write("</table>")
+	else
+		response.write("No se han encontrado resultados")
+	end if
+	
+	ObjConexion.cerrarConexion()
+
+end SUB
+
 End class
 %>
