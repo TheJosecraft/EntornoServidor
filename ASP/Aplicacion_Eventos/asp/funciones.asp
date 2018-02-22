@@ -21,7 +21,7 @@
 		<% end if %>
 		<% if pag = "eventos" then %>
 				<li class="nav-item"><a class="nav-link" href="insertarEvento.asp"><i class="fas fa-plus-square"></i> Introducir nuevo evento</a></li>
-				<li class="nav-item"><a class="nav-link" href=""><i class="fas fa-search"></i> Buscar un evento</a></li>
+				<li class="nav-item"><a class="nav-link" href="buscarEvento.asp"><i class="fas fa-search"></i> Buscar un evento</a></li>
 				<li class="nav-item"><a class="nav-link" href="calendarioEventos.asp"><i class="far fa-calendar-alt"></i> Calendario de eventos</a></li>
 		<% end if %>
 		<% if pag = "aplicacion" then%>
@@ -34,7 +34,7 @@
 				<li class="nav-item"><a class="nav-link" href=""><i class="fas fa-search"></i> Buscar actividad</a></li>
 		<% end if %>
 		<% if pag = "eventos" then %>
-				<li class="nav-item"><a class="nav-link" href=""><i class="fas fa-search"></i> Buscar un evento</a></li>
+				<li class="nav-item"><a class="nav-link" href="buscarEvento.asp"><i class="fas fa-search"></i> Buscar un evento</a></li>
 				<li class="nav-item"><a class="nav-link" href="calendarioEventos.asp"><i class="far fa-calendar-alt"></i> Calendario de eventos</a></li>
 		<% end if %>
 		

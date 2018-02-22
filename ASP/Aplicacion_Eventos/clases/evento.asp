@@ -152,6 +152,49 @@ public SUB getAll()
 	ObjConexion.cerrarConexion()
 end SUB
 
+public SUB buscarEvento(busqueda)
+
+	set ObjConexion = new Conexion
+	ObjConexion.conectar()
+
+	set datos = ObjConexion.consultar("SELECT e.* FROM EVENTOS e, CLIENTE c, ACTIVIDAD a where e.cliente = c.codigo and e.actividad = a.codigo and (a.nombre like '%" & busqueda & "%' or c.nombre like '%" & busqueda & "%' or e.fecha_contrato like'%" & busqueda & "%' or e.fecha_evento like '%" & busqueda & "%')")
+
+	response.write("<table class='table'>")
+	response.write("<thead class='thead-dark'>")
+	response.write("<tr>")
+	response.write("<th>Actividad</th>")
+	response.write("<th>Cliente</th>")
+	response.write("<th>Fecha Contrato</th>")
+	response.write("<th>Fecha Evento</th>")
+	if Session("id_usuario") = 1 then
+		response.write("<th>Acciones</th>")
+	end if
+	response.write("</tr>")
+	response.write("</thead>")
+	response.write("<tbody>")
+	do while not datos.eof
+		set cli = new Cliente
+		set act = new Actividad
+		
+		response.write("<tr>")
+		response.write("<td>" & act.getNombreById(datos("actividad")) & "</td>")
+		response.write("<td>" & cli.getNombreById(datos("cliente")) & "</td>")
+		response.write("<td>" & datos("fecha_contrato") & "</td>")
+		response.write("<td>" & datos("fecha_evento") & "</td>")
+		if Session("id_usuario") = 1 then
+			response.write("<td><a class='btn btn-danger text-white' href='borrarEvento.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+		end if
+		
+		response.write("</tr>")
+		datos.moveNext
+	loop
+
+	response.write("</tbody>")
+	response.write("</table>")
+	ObjConexion.cerrarConexion()
+
+end SUB
+
 public SUB insertarEvento()
 
 	set ObjConexion = new Conexion
