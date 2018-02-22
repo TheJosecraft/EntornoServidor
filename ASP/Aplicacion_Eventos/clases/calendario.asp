@@ -165,7 +165,7 @@ Public Sub Display
 ' end if
 	diasMes =  "01/" & cMonth & "/" & cYear
   
-    if cMonth = 12 then
+	if cMonth = 12 then
 		diasMes = "01/01/" & cYear + 1
 	else
 		diasMes = "01/" & cMonth + 1 & "/" & cYear
@@ -209,62 +209,61 @@ Public Sub Display
 					diasMes = "01/" & cMonth +1 & "/" & cYear
 				end if
 				
-                
-                fecha = Cdate(Cadfecha)
-                inicioSemana = Weekday(fecha, VBMONDAY)
-                ultimoDia = dateadd("d", -1, diasMes)
-                numDias = day(ultimoDia)
-                contCeldas = 1
+				
+				fecha = Cdate(Cadfecha)
+				inicioSemana = Weekday(fecha, VBMONDAY)
+				ultimoDia = dateadd("d", -1, diasMes)
+				numDias = day(ultimoDia)
+				contCeldas = 1
 
-                while (inicioSemana > 1)
+				while (inicioSemana > 1)
 					Response.write("<td>&nbsp;</td>")
-                	contCeldas = contCeldas + 1
-                	inicioSemana = inicioSemana - 1
-                	'Response.write("Contador: " & contCeldas & "<br>")
-                wend
+					contCeldas = contCeldas + 1
+					inicioSemana = inicioSemana - 1
+					'Response.write("Contador: " & contCeldas & "<br>")
+				wend
 
-                For j = 1 To Days
-                	DIM fec
-                	fec = j & "/" & cMonth & "/" & cYear
-                	fec = cDate(fec)
+				For j = 1 To Days
+					DIM fec
+					fec = j & "/" & cMonth & "/" & cYear
+					fec = cDate(fec)
 
-                	if in_array(fec, cEventos) then
-                		Response.Write("<td><a href='?eventos=true&dia=" & j & "&currMonth=" & cMonth & "&currYear=" & cYear & "'>" & j & "</a></td>")
-                	else
-                		Response.Write("<td>" & j & "</td>")
-               		end if
-                   
-                   
-                    If contCeldas MOD 7 = 0 AND contCeldas <> 0 Then %>
-                            </tr><tr>
-                    <% contCeldas = 0
-                    End if
-                    'Response.write("Contador: " & contCeldas & "<br>")
+					if in_array(fec, cEventos) then
+						Response.Write("<td><a href='?eventos=true&dia=" & j & "&currMonth=" & cMonth & "&currYear=" & cYear & "'>" & j & "</a></td>")
+					else
+						Response.Write("<td>" & j & "</td>")
+					end if
+				   
+				   
+					If contCeldas MOD 7 = 0 AND contCeldas <> 0 Then %>
+							</tr><tr>
+					<% contCeldas = 0
+					End if
+					'Response.write("Contador: " & contCeldas & "<br>")
 
-                    contCeldas = contCeldas + 1
-                Next
+					contCeldas = contCeldas + 1
+				Next
 				%>
 			</table>
    <% If cShowForm Then BottomForm
 End Sub 
 
 Private Sub BottomForm()%> 
-   <table border="0" cellspacing=1 cellpadding=1 width=200> 
-   <form method="GET" action="<%= Request.ServerVariables("SCRIPT_NAME") %>"> 
-   <tr> 
-   <td align="right" width="25%"><font color="#000000" size=<%=cFontSize%> face="<%=cFonts%>"><b>Mes</b></font></td> 
-   <td><select name="currMonth"> 
-   <%For i = 1 to 12%> 
-   <option value=<%=i%><%If i = Int(cMonth) Then response.write " Selected"%>><%=arrMonths(i)%></option> 
-   <%Next%> 
-   </select></td> 
-   <td align="right" width="25%"><font color="#000000" size=<%=cFontSize%> face="<%=cFonts%>"><b>Año</b></font></td> 
-   <td><input type="text" name="currYear" maxlength=4 size=4  value="<%=cYear%>"></td> 
-   </tr> 
-   <tr><td colspan=4 align="right"><input type="submit" value="Ir"></td></tr> 
-   <input type="hidden" name="calAction" value="goto"> 
+   <form class="form-inline mb-3" method="GET" action="<%= Request.ServerVariables("SCRIPT_NAME") %>"> 
+	
+		<label class="sr-only" for="mes">Mes</label>
+		<select class="form-control  mb-2 mr-sm-2 mb-sm-0" name="currMonth"> 
+		 <%For i = 1 to 12 %> 
+		 <option value=<%=i%><%If i = Int(cMonth) Then response.write " Selected"%>><%=arrMonths(i)%></option> 
+		 <%next%> 
+		 </select> 
+	
+		<label class="sr-only" for="">Año</label>
+		<input class="form-control  mb-2 mr-sm-2 mb-sm-0" type="text" name="currYear" maxlength=4 size=4  value="<%=cYear%>">
+	
+		<input class="btn btn-success" type="submit" value="Ir">
+		<input type="hidden" name="calAction" value="goto"> 
    </form> 
-   </table> 
 <%End Sub 
 
 

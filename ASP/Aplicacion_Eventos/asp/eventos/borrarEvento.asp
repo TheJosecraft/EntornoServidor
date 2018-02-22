@@ -1,6 +1,7 @@
+<!-- #include file ="../funciones.asp" -->
 <!-- #include file ="../../clases/conexion.asp" -->
 <!-- #include file ="../../clases/evento.asp" -->
-<% sesiones() %>
+<% sesiones(0) %>
 <%
 set eve = new Evento
 

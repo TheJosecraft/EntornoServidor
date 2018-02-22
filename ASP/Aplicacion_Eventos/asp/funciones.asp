@@ -14,14 +14,12 @@
 	<% if Session("id_usuario") = 1 then %>
 		<% if pag = "actividades" then %>
 				<li class="nav-item"><a class="nav-link" href="insertarActividad.asp"><i class="fas fa-plus-square"></i> Introducir actividad</a></li>
-				<li class="nav-item"><a class="nav-link" href=""><i class="fas fa-search"></i> Buscar actividad</a></li>
 		<% end if %>
 		<% if pag = "clientes" then %>
 				<li class="nav-item"><a class="nav-link" href="insertarCliente.asp"><i class="fas fa-plus-square"></i> Introducir nuevo cliente</a></li>
 		<% end if %>
 		<% if pag = "eventos" then %>
 				<li class="nav-item"><a class="nav-link" href="insertarEvento.asp"><i class="fas fa-plus-square"></i> Introducir nuevo evento</a></li>
-				<li class="nav-item"><a class="nav-link" href="buscarEvento.asp"><i class="fas fa-search"></i> Buscar un evento</a></li>
 				<li class="nav-item"><a class="nav-link" href="calendarioEventos.asp"><i class="far fa-calendar-alt"></i> Calendario de eventos</a></li>
 		<% end if %>
 		<% if pag = "aplicacion" then%>
@@ -30,11 +28,7 @@
 				<li class="nav-item"><a class="nav-link" href="../../index.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
 		<% end if %>
 	<% else %>
-		<% if pag = "actividades" then %>
-				<li class="nav-item"><a class="nav-link" href=""><i class="fas fa-search"></i> Buscar actividad</a></li>
-		<% end if %>
 		<% if pag = "eventos" then %>
-				<li class="nav-item"><a class="nav-link" href="buscarEvento.asp"><i class="fas fa-search"></i> Buscar un evento</a></li>
 				<li class="nav-item"><a class="nav-link" href="calendarioEventos.asp"><i class="far fa-calendar-alt"></i> Calendario de eventos</a></li>
 		<% end if %>
 		
@@ -59,10 +53,15 @@ SUB get_footer() %>
 	<script type="text/javascript" href="../../js/bootstrap.min.js"></script>
 <% END SUB
 
-SUB sesiones()
+SUB sesiones(permiso)
 	if Session("id_usuario") = "" then
 		response.redirect("../../index.asp")
 	end if
+
+	if Session("id_usuario") <> 1 AND permiso = 0 then
+		response.redirect("../../index.asp")
+	end if
+
 END SUB
 
 SUB cerrarSesion()

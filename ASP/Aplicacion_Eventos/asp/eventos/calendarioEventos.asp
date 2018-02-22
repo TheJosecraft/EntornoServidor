@@ -5,7 +5,7 @@
 <!-- #include file ="../../clases/cliente.asp" -->
 <!-- #include file ="../../clases/evento.asp" -->
 <!--#include file="../../clases/calendario.asp"-->
-<% sesiones() %> 
+<% sesiones(1) %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,6 @@
                 <div class="container-fluid h-100">
                     <div class="row h-100">
                         <div class="col-12">
-                            <% response.write("Bienvenido, " & Session("id_usuario")) %>
                             <%
 							Set miCal = New Calendar 
 							miCal.value = Now 'Sets Current Date 
@@ -42,7 +41,7 @@
 
 								fecha = dia & "/" & mes & "/" & anio
 								fecha = cdate(fecha)
-								response.write(fecha)
+
 								eve.getByFechaEvento(fecha)
 							end if
 							%>

@@ -154,7 +154,6 @@ public SUB insertarCliente()
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
 	ObjConexion.consultar("INSERT INTO CLIENTE (nombre, telefono, direccion, contra) VALUES ('" & m_nombre & "', '" & m_telefono & "', '" & m_direccion & "', '" & m_contra & "')")
-
 	ObjConexion.cerrarConexion()
 
 end SUB

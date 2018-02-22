@@ -22,7 +22,7 @@
 				</div>
 				<div class="form-group">	
 					<label for="password">Contraseña</label>
-					<input class="form-control" type="text" name="password" id="password">
+					<input class="form-control" type="password" name="password" id="password">
 				</div>
 				<button type="submit" name="enviar" value="Acceder" class="btn btn-primary">Acceder <i class="fas fa-sign-in-alt"></i></button>
 			</form>

@@ -88,7 +88,11 @@ public SUB getByFechaEvento(fecha)
 	response.write("<thead class='thead-dark'>")
 	response.write("<tr>")
 	response.write("<th>Actividad</th>")
-	response.write("<th>Cliente</th>")
+
+	if Session("id_usuario") = 1 then
+		response.write("<th>Cliente</th>")
+	end if
+	
 	response.write("<th>Fecha Contrato</th>")
 	response.write("<th>Fecha Evento</th>")
 	if Session("id_usuario") = 1 then
@@ -102,11 +106,20 @@ public SUB getByFechaEvento(fecha)
 		set act = new Actividad
 		response.write("<tr>")
 		response.write("<td>" & act.getNombreById(datos("actividad")) & "</td>")
-		response.write("<td>" & cli.getNombreById(datos("cliente")) & "</td>")
+
+		if Session("id_usuario") = 1 then
+			response.write("<td>" & cli.getNombreById(datos("cliente")) & "</td>")
+		end if
+		
 		response.write("<td>" & datos("fecha_contrato") & "</td>")
 		response.write("<td>" & datos("fecha_evento") & "</td>")
-		if Session("id_usuario") = 1 then
+		fecev = cdate(datos("fecha_evento"))
+		if Session("id_usuario") = 1 AND fecev > date() then
 			response.write("<td><a class='btn btn-danger text-white' href='borrarEvento.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+		elseif Session("id_usuario") <> 1 then
+			
+		else
+			response.write("<td><button class='btn btn-danger text-white' disabled><i class='far fa-trash-alt'></i> Borrar</button></td>")
 		end if
 		response.write("</tr>")
 		datos.moveNext
@@ -120,13 +133,20 @@ end SUB
 public SUB getAll()
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
-	set datos = ObjConexion.consultar("SELECT * FROM EVENTOS")
+	if Session("id_usuario") = 1 then
+		set datos = ObjConexion.consultar("SELECT * FROM EVENTOS order by fecha_evento")
+	else
+		set datos = ObjConexion.consultar("SELECT * FROM EVENTOS where cliente = "  & Session("id_usuario") & " order by fecha_evento")
+	end if
+	
 
 	response.write("<table class='table'>")
 	response.write("<thead class='thead-dark'>")
 	response.write("<tr>")
 	response.write("<th>Actividad</th>")
-	response.write("<th>Cliente</th>")
+	if Session("id_usuario") = 1 then
+		response.write("<th>Cliente</th>")
+	end if
 	response.write("<th>Fecha Contrato</th>")
 	response.write("<th>Fecha Evento</th>")
 	if Session("id_usuario") = 1 then
@@ -140,11 +160,20 @@ public SUB getAll()
 		set act = new Actividad
 		response.write("<tr>")
 		response.write("<td>" & act.getNombreById(datos("actividad")) & "</td>")
-		response.write("<td>" & cli.getNombreById(datos("cliente")) & "</td>")
+
+		if Session("id_usuario") = 1 then
+			response.write("<td>" & cli.getNombreById(datos("cliente")) & "</td>")
+		end if
+		
 		response.write("<td>" & datos("fecha_contrato") & "</td>")
 		response.write("<td>" & datos("fecha_evento") & "</td>")
-		if Session("id_usuario") = 1 then
+		fecev = cdate(datos("fecha_evento"))
+		if Session("id_usuario") = 1 AND fecev > date() then
 			response.write("<td><a class='btn btn-danger text-white' href='borrarEvento.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+		elseif Session("id_usuario") <> 1 then
+			
+		else
+			response.write("<td><button class='btn btn-danger text-white' disabled><i class='far fa-trash-alt'></i> Borrar</button></td>")
 		end if
 		
 		response.write("</tr>")
@@ -161,14 +190,24 @@ public SUB buscarEvento(busqueda)
 	set ObjConexion = new Conexion
 	ObjConexion.conectar()
 
-	set datos = ObjConexion.consultar("SELECT e.* FROM EVENTOS e, CLIENTE c, ACTIVIDAD a where e.cliente = c.codigo and e.actividad = a.codigo and (a.nombre like '%" & busqueda & "%' or c.nombre like '%" & busqueda & "%' or e.fecha_contrato like'%" & busqueda & "%' or e.fecha_evento like '%" & busqueda & "%')")
+	if Session("id_usuario") = 1 then
+		set datos = ObjConexion.consultar("SELECT e.* FROM EVENTOS e, CLIENTE c, ACTIVIDAD a where e.cliente = c.codigo and e.actividad = a.codigo and (a.nombre like '%" & busqueda & "%' or c.nombre like '%" & busqueda & "%' or e.fecha_contrato like'%" & busqueda & "%' or e.fecha_evento like '%" & busqueda & "%') order by fecha_evento")
+	else
+		set datos = ObjConexion.consultar("SELECT e.* FROM EVENTOS e, CLIENTE c, ACTIVIDAD a where e.cliente = c.codigo and e.actividad = a.codigo and (a.nombre like '%" & busqueda & "%' or c.nombre like '%" & busqueda & "%' or e.fecha_contrato like'%" & busqueda & "%' or e.fecha_evento like '%" & busqueda & "%') and c.codigo = " & Session("id_usuario") & " order by fecha_evento")
+	end if
+
+	
 
 	if not datos.eof then
 		response.write("<table class='table'>")
 		response.write("<thead class='thead-dark'>")
 		response.write("<tr>")
 		response.write("<th>Actividad</th>")
-		response.write("<th>Cliente</th>")
+
+		if Session("id_usuario") = 1 then
+			response.write("<th>Cliente</th>")
+		end if
+
 		response.write("<th>Fecha Contrato</th>")
 		response.write("<th>Fecha Evento</th>")
 		if Session("id_usuario") = 1 then
@@ -183,11 +222,20 @@ public SUB buscarEvento(busqueda)
 
 			response.write("<tr>")
 			response.write("<td>" & act.getNombreById(datos("actividad")) & "</td>")
-			response.write("<td>" & cli.getNombreById(datos("cliente")) & "</td>")
+
+			if Session("id_usuario") = 1 then
+				response.write("<td>" & cli.getNombreById(datos("cliente")) & "</td>")
+			end if
+
 			response.write("<td>" & datos("fecha_contrato") & "</td>")
 			response.write("<td>" & datos("fecha_evento") & "</td>")
-			if Session("id_usuario") = 1 then
-				response.write("<td><a class='btn btn-danger text-white' href='borrarEvento.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+			fecev = cdate(datos("fecha_evento"))
+			if Session("id_usuario") = 1 AND fecev > date() then
+			response.write("<td><a class='btn btn-danger text-white' href='borrarEvento.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+			elseif Session("id_usuario") <> 1 then
+				
+			else
+				response.write("<td><button class='btn btn-danger text-white' disabled><i class='far fa-trash-alt'></i> Borrar</button></td>")
 			end if
 			
 			response.write("</tr>")

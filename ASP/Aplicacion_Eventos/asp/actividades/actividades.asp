@@ -2,7 +2,7 @@
 <!-- #include file ="../funciones.asp" -->
 <!-- #include file ="../../clases/conexion.asp" -->
 <!-- #include file ="../../clases/actividad.asp" -->
-<% sesiones() %>
+<% sesiones(1) %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +20,8 @@
                         	<h1>Lista de actividades</h1>
                             <form method="get" action="#">
                                 <div class="input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Buscar evento" name="busqueda" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <input type="hidden" class="form-control" placeholder="Buscar evento" name="buscar" value="true" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Buscar actividad" name="busqueda">
+                                <input type="hidden" class="form-control" name="buscar" value="true" >
                                   <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                                   </div>

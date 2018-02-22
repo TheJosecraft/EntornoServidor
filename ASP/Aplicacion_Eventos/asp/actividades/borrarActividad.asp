@@ -2,7 +2,7 @@
 <!-- #include file ="../funciones.asp" -->
 <!-- #include file ="../../clases/conexion.asp" -->
 <!-- #include file ="../../clases/actividad.asp" -->
-<% sesiones() %>
+<% sesiones(0) %>
 <%
 set act = new Actividad
 

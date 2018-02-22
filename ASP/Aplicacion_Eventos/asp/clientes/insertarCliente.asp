@@ -1,7 +1,8 @@
 <% @ CODEPAGE = 65001 %>
     <!-- #include file ="../funciones.asp" -->
+    <!-- #include file ="../../clases/conexion.asp" -->
     <!-- #include file ="../../clases/cliente.asp" -->
-    <% sesiones() %>
+    <% sesiones(0) %>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -19,7 +20,6 @@
                         <div class="row h-100">
                             <div class="col-12">
                             	<h1>Insertar nuevo cliente</h1>
-                                <% response.write("Bienvenido, " & Session("id_usuario")) %>
                                     <form action="#" method="post">
                                         <div class="form-group">
                                             <label for="nombre">Nombre</label>
@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="contra">Contraseña</label>
-                                            <input class="form-control" type="text" name="contra" id="contra">
+                                            <input class="form-control" type="password" name="contra" id="contra">
                                         </div>
                                         <input class="btn btn-success" type="submit" name="enviar" id="insertarCliente">
                                     </form>

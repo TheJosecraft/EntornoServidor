@@ -3,7 +3,7 @@
     <!-- #include file ="../../clases/conexion.asp" -->
     <!-- #include file ="../../clases/evento.asp" -->
     <!-- #include file ="../../clases/actividad.asp" -->
-    <% sesiones() %>
+    <% sesiones(0) %>
     <!DOCTYPE html>
     <html lang="en">
 
@@ -21,7 +21,6 @@
                         <div class="container-fluid h-100">
                             <div class="row h-100">
                                 <div class="col-12">
-                                    <% response.write("Bienvenido, " & Session("id_usuario")) %>
                                         <form action="#" method="post">
                                             <div class="form-group">
                                                 <label for="actividad">Actividad</label>
