@@ -9,6 +9,9 @@ Private arrMonths(12)
 Private cShowNav 
 Private cShowForm 
 Private cEventos
+Private cDia
+Private cMes
+Private cAnio
 
 Private Sub  Class_Initialize() 
    cBorder = True
@@ -37,7 +40,11 @@ ObjConexion.conectar()
 
 redim cEventos(1)
 
-set datos = ObjConexion.consultar("SELECT DISTINCT fecha_evento FROM EVENTOS order by fecha_evento")
+if Session("id_usuario") = 1 then
+  set datos = ObjConexion.consultar("SELECT DISTINCT fecha_evento FROM EVENTOS order by fecha_evento")
+else
+  set datos = ObjConexion.consultar("SELECT DISTINCT fecha_evento FROM EVENTOS where cliente = " & Session("id_usuario") & " order by fecha_evento")
+end if
 
 do while not datos.eof
 
@@ -104,6 +111,17 @@ Public sub getEventos()
 	next
 end SUB
 
+public SUB setDia(dia)
+  cDia = dia
+end SUB
+
+public SUB setMes(mes)
+  cMes = mes
+end SUB
+
+public SUB setAnio(anio)
+  cAnio = anio
+end SUB
 
 Public Sub Display 
    If cShowNav or cShowForm Then 
@@ -211,7 +229,7 @@ Public Sub Display
                 	fec = cDate(fec)
 
                 	if in_array(fec, cEventos) then
-                		Response.Write("<td><a href='?dia=" & j & "&currMonth=" & cMonth & "&currYear=" & cYear & "'>" & j & "</a></td>")
+                		Response.Write("<td><a href='?eventos=true&dia=" & j & "&currMonth=" & cMonth & "&currYear=" & cYear & "'>" & j & "</a></td>")
                 	else
                 		Response.Write("<td>" & j & "</td>")
                		end if

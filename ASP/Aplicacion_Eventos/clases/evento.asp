@@ -66,6 +66,53 @@ Class Evento
 	ObjConexion.cerrarConexion()
 end SUB
 
+public SUB getByFechaEvento(fecha)
+	set ObjConexion = new Conexion
+	ObjConexion.Conectar()
+
+	fecha = dia & "/" & mes & "/" & anio
+	fecha = cdate(fecha)
+
+
+	if Session("id_usuario") = 1 then
+		set datos = ObjConexion.consultar("SELECT * FROM EVENTOS where fecha_evento like '" & fecha & "'")
+	else
+		set datos = ObjConexion.consultar("SELECT * FROM EVENTOS where fecha_evento like '" & fecha & "' and cliente = " & Session("id_usuario"))
+	end if
+
+	response.write("<table class='table'>")
+	response.write("<thead class='thead-dark'>")
+	response.write("<tr>")
+	response.write("<th>Actividad</th>")
+	response.write("<th>Cliente</th>")
+	response.write("<th>Fecha Contrato</th>")
+	response.write("<th>Fecha Evento</th>")
+	if Session("id_usuario") = 1 then
+		response.write("<th>Acciones</th>")
+	end if
+	response.write("</tr>")
+	response.write("</thead>")
+	response.write("<tbody>")
+	do while not datos.eof
+		set cli = new Cliente
+		set act = new Actividad
+		response.write("<tr>")
+		response.write("<td>" & act.getNombreById(datos("actividad")) & "</td>")
+		response.write("<td>" & cli.getNombreById(datos("cliente")) & "</td>")
+		response.write("<td>" & datos("fecha_contrato") & "</td>")
+		response.write("<td>" & datos("fecha_evento") & "</td>")
+		if Session("id_usuario") = 1 then
+			response.write("<td><a class='btn btn-danger text-white' href='borrarEvento.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+		end if
+		response.write("</tr>")
+		datos.moveNext
+	loop
+
+	response.write("</tbody>")
+	response.write("</table>")
+	ObjConexion.cerrarConexion()
+end SUB
+
 public SUB getAll()
 	set ObjConexion = new Conexion
 	ObjConexion.Conectar()
@@ -78,7 +125,9 @@ public SUB getAll()
 	response.write("<th>Cliente</th>")
 	response.write("<th>Fecha Contrato</th>")
 	response.write("<th>Fecha Evento</th>")
-	response.write("<th>Acciones</th>")
+	if Session("id_usuario") = 1 then
+		response.write("<th>Acciones</th>")
+	end if
 	response.write("</tr>")
 	response.write("</thead>")
 	response.write("<tbody>")
@@ -90,7 +139,10 @@ public SUB getAll()
 		response.write("<td>" & cli.getNombreById(datos("cliente")) & "</td>")
 		response.write("<td>" & datos("fecha_contrato") & "</td>")
 		response.write("<td>" & datos("fecha_evento") & "</td>")
-		response.write("<td><a class='btn btn-danger text-white' href='borrarEvento.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+		if Session("id_usuario") = 1 then
+			response.write("<td><a class='btn btn-danger text-white' href='borrarEvento.asp?id=" & datos("codigo") & "'><i class='far fa-trash-alt'></i> Borrar</a></td>")
+		end if
+		
 		response.write("</tr>")
 		datos.moveNext
 	loop

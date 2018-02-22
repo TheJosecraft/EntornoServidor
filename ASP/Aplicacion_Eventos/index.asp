@@ -45,7 +45,12 @@
 			do while not datos.eof
 				if usuario = datos("nombre") AND password = datos("contra") then
 					Session("id_usuario") = datos("codigo")
-					response.redirect "asp/aplicacion.asp"
+					if Session("id_usuario") = 1 then
+						response.redirect "asp/clientes/clientes.asp?lista=true"
+					else
+						response.redirect "asp/clientes/clientes.asp?factura=true"
+					end if
+					
 				end if
 				datos.moveNext
 			loop
