@@ -20,7 +20,6 @@
                         <div class="container-fluid h-100">
                             <div class="row h-100">
                                 <div class="col-12">
-                                    <% response.write("Bienvenido, " & Session("id_usuario")) %>
                                         <form action="#" method="post">
                                             <div class="form-group">
                                                 <label for="nombre">Nombre</label>

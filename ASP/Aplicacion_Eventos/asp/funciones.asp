@@ -25,7 +25,7 @@
 		<% if pag = "aplicacion" then%>
 				<li class="nav-item"><a class="nav-link" href="../index.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
 		<% else %>
-				<li class="nav-item"><a class="nav-link" href="../../index.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+				<li class="nav-item"><a class="nav-link" href="../cerrarSesion.asp"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
 		<% end if %>
 	<% else %>
 		<% if pag = "eventos" then %>
@@ -54,6 +54,10 @@ SUB get_footer() %>
 <% END SUB
 
 SUB sesiones(permiso)
+	if len(request.cookies("sesion")) > 0 then
+		Session("id_usuario") = request.cookies("id_usuario")
+	end if
+
 	if Session("id_usuario") = "" then
 		response.redirect("../../index.asp")
 	end if

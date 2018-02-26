@@ -1,5 +1,15 @@
 <% @ CODEPAGE = 65001 %>
 <!-- #include file ="clases/conexion.asp" -->
+<% if len(request.cookies("sesion")) > 0 then
+	Session("id_usuario") = request.cookies("id_usuario")
+
+	if Session("id_usuario") = 1 then
+		response.redirect "asp/clientes/clientes.asp?lista=true"
+	else
+		response.redirect "asp/clientes/clientes.asp?factura=true"
+	end if
+end if
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +34,10 @@
 					<label for="password">Contraseña</label>
 					<input class="form-control" type="password" name="password" id="password">
 				</div>
+				<div class="custom-control custom-checkbox mb-3">
+				  <input type="checkbox" class="custom-control-input" id="sesion" name="sesion">
+				  <label class="custom-control-label" for="sesion">Mantener sesión abierta</label>
+				</div>
 				<button type="submit" name="enviar" value="Acceder" class="btn btn-primary">Acceder <i class="fas fa-sign-in-alt"></i></button>
 			</form>
 			<br>
@@ -45,6 +59,13 @@
 			do while not datos.eof
 				if usuario = datos("nombre") AND password = datos("contra") then
 					Session("id_usuario") = datos("codigo")
+
+					if request.form("sesion") = "on" then
+						response.cookies("sesion") = true
+						response.cookies("id_usuario") = datos("codigo")
+						Response.Cookies("sesion").Expires=date() + 1
+					end if
+
 					if Session("id_usuario") = 1 then
 						response.redirect "asp/clientes/clientes.asp?lista=true"
 					else
