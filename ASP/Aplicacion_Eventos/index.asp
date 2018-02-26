@@ -49,14 +49,15 @@
 			do while not datos.eof
 				if usuario = datos("nombre") AND password = datos("contra") then
 					Session("id_usuario") = datos("codigo")
+					if request.form("sesion") = "sesion" then
+						response.cookies("sesion") = true
+						Response.Cookies("sesion").Expires=#May 10,2018#
+					end if
+
 					if Session("id_usuario") = 1 then
 						response.redirect "asp/clientes/clientes.asp?lista=true"
 					else
 						response.redirect "asp/clientes/clientes.asp?factura=true"
-					end if
-
-					if request.form("sesion") then
-						response.cookies("sesion") = true
 					end if
 					
 				end if
