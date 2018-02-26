@@ -24,6 +24,10 @@
 					<label for="password">Contraseña</label>
 					<input class="form-control" type="password" name="password" id="password">
 				</div>
+				<div class="custom-control custom-checkbox mb-3">
+				  <input type="checkbox" class="custom-control-input" id="sesion" name="sesion">
+				  <label class="custom-control-label" for="sesion">Mantener sesión abierta</label>
+				</div>
 				<button type="submit" name="enviar" value="Acceder" class="btn btn-primary">Acceder <i class="fas fa-sign-in-alt"></i></button>
 			</form>
 			<br>
@@ -49,6 +53,10 @@
 						response.redirect "asp/clientes/clientes.asp?lista=true"
 					else
 						response.redirect "asp/clientes/clientes.asp?factura=true"
+					end if
+
+					if request.form("sesion") then
+						response.cookies("sesion") = true
 					end if
 					
 				end if
